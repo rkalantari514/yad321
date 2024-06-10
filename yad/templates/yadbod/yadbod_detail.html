@@ -103,7 +103,7 @@
                 <div class="card-header">{{ mar.title }}
                     <!--    ({{ mar.event_date|timeuntil }} دیگر) -->
 
-                    {# ============================================#}
+<!--                    {# ============================================#}-->
 
                     {% if request.user.is_authenticated %}
                     {% if event_permision %}
@@ -126,11 +126,11 @@
                     {% endif %}
 
 
-                    {#<a class="mr-1" data-toggle="modal" data-target="#DialogIconedButton">#}
-                        {#
+<!--                    {#<a class="mr-1" data-toggle="modal" data-target="#DialogIconedButton">#}-->
+<!--                        {#-->
                         <ion-icon name="trash-outline"></ion-icon>
                         #}
-                        {#</a>#}
+<!--                        {#</a>#}-->
 
 
                     <!-- Dialog Iconed Block -->
@@ -154,9 +154,9 @@
 
 
                                         <a href="#" class="btn btn-text-primary btn-block" data-dismiss="modal">
-                                            {#
-                                            <ion-icon name="share-outline"></ion-icon>
-                                            #}
+<!--                                            {#-->
+<!--                                            <ion-icon name="share-outline"></ion-icon>-->
+<!--                                            #}-->
                                             انصراف
                                         </a>
 
@@ -168,7 +168,7 @@
                     <!-- * Dialog Iconed Block -->
 
 
-                    {# ++++++++++++++++++++++++++++++++++++++++++++#}
+<!--                    {# ++++++++++++++++++++++++++++++++++++++++++++#}-->
 
 
                 </div>
@@ -412,11 +412,6 @@
                     <source src="{{ quran_page.sound.url }}" type="audio/wav">
                 </audio>
 
-                {#
-                <audio src="{{ quran_page.sound.url }}" controls>#}
-                    {#
-                </audio>
-                #}
 
 
             </div>
@@ -532,16 +527,16 @@
                             {% endcomment %}
 
 
-                            {#SMS android#}
+<!--                            {#SMS android#}-->
                             <div class="col-2 ">
-                                {#
+<!--                                {#-->
                                 <div class="col-2 android-detection">#}
                                     <a href="{{ smsandroid }}" class="btn btn-icon btn-twitter" data-dismiss="modal">
                                         <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                                     </a>
                                 </div>
 
-                                {#SMS ios#}
+<!--                                {#SMS ios#}-->
                                 <div class="col-2 ios-detection">
                                     <a href="{{ smsforios }}" class="btn btn-icon btn-twitter" data-dismiss="modal">
                                         <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
@@ -549,7 +544,7 @@
                                 </div>
 
 
-                                {# telegram#}
+<!--                                {# telegram#}-->
                                 <div class="col-2">
                                     <a href="{{ telegram }}" class="btn btn-icon btn-primary" data-dismiss="modal">
                                         <ion-icon name="paper-plane-outline"></ion-icon>
@@ -566,7 +561,7 @@
                                 {% endcomment %}
 
 
-                                {#whatsapp#}
+<!--                                {#whatsapp#}-->
 
                                 <div class="col-2">
                                     <a href="{{ whatsapp }}"
@@ -577,7 +572,7 @@
                                 </div>
 
 
-                                {# eitaa#}
+<!--                                {# eitaa#}-->
                                 <div class="col-2">
                                     <a href="{{ eitaa }}"
                                        class="btn btn-icon btn-warning" target="_blank">
@@ -588,7 +583,7 @@
                                 </div>
 
 
-                                {#bale#}
+<!--                                {#bale#}-->
                                 <div class="col-2">
                                     <a href="{{ bale }}"
                                        class="btn btn-icon " target="_blank">
@@ -597,7 +592,7 @@
                                 </div>
 
 
-                                {# sorosh#}
+<!--                                {# sorosh#}-->
                                 <div class="col-2">
                                     <a href="{{ sorosh }}"
                                        class="btn btn-icon " target="_blank">
