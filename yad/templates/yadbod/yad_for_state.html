@@ -1,0 +1,93 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+{% block content %}
+
+    <div class="mt-2 pr-2 pl-2">
+        <div class="row justify-content-center">
+            <div class="in">
+                <h3 class="name">یادبود های استان {{ state }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            {% for yad in page_obj %}
+                <div class="col-4 mb-2">
+                    <a href="/yadbood/{{ yad.id }}">
+                        <img src="{{ yad.master_image.url }}" alt="{{ yad.name }} {{ yad.family }}" class="imaged w-100">
+                        <div class="in">
+                            <h5 class="subtext">{{ yad.title }} {{ yad.name }} {{ yad.family }}</h5>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+                </div>
+
+
+    <nav>
+        <ul class="pagination pagination-secondary">
+
+            {% if page_obj.has_previous %}
+                <li class="page-item "><a class="page-link" href="{{ page_obj.previous_page_number }}">قبلی</a></li>
+            {% endif %}
+
+
+
+            {% for page in paginator.page_range %}
+                {% if page > stpage and  page < finpage %}
+                    {% if page == page_obj.number %}
+                        <li class="page-item"><a class="page-link bg-primary" href="{{ page }}">{{ page }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="{{ page }}">{{ page }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+
+            {% if page_obj.has_next %}
+                <li class="page-item "><a class="page-link" href="{{ page_obj.next_page_number }}">بعدی</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+
+
+        <div class="row justify-content-center">
+            <div class="in">
+                <br>
+                <h3 class="name">شهرها</h3>
+            </div>
+        </div>
+
+
+        <ul class="listview image-listview media flush transparent pt-1">
+            {% for ci in cityno %}
+                <li>
+                    <a href="/yadbood/city/{{ ci.2 }}/1" class="item">
+                        <div class="icon-box bg-secondary">
+                            <ion-icon name="golf-outline" role="img" class="md hydrated"
+                                      aria-label="megaphone outline"></ion-icon>
+                        </div>
+                        <div class="in">
+                            <div>
+                                {{ ci.0 }}
+
+                                <div class="text-muted">{{ ci.1 }} یادبود</div>
+                            </div>
+                            <span class="badge badge-primary">{{ ci.1 }}</span>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+
+
+        </ul>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

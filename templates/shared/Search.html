@@ -1,0 +1,19 @@
+{% load static%}
+    <!-- Search Component -->
+    <div id="search" class="appHeader">
+        <form action="/search" method="get" class="search-form">
+            <div class="form-group searchbox">
+
+                <input type="text" class="form-control" placeholder="جستجو ... " value="{{ request.GET.q }}" name="q"/>
+                <i class="input-icon">
+                    <ion-icon name="search-outline"></ion-icon>
+                </i>
+                <a href="javascript:;" class="mr-1 close toggle-searchbox">
+                    <ion-icon name="close-circle"></ion-icon>
+                </a>
+
+            </div>
+        </form>
+    </div>
+    <!-- * Search Component -->
+

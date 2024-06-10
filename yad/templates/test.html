@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+        {#add sound#}
+        $(".page-btn").click(function (e) {
+                e.preventDefault()
+                var id = $(this).attr("data-pk")
+                var yad = "/yadbod/" + id
+                var url = $(this).attr("href")
+
+
+                $.ajax({
+                        url: url,
+                        success: function (success) {
+                            $.ajax(
+                                {
+                                    url: yad,
+                                    success: function (s) {
+                                        console.log(s)
+                                        $('#page-' + id).html(s.page)
+                                        {#$('#image-' + id).html(s.image)#}
+                                        $('#sound-' + id).attr('src', s.sound)
+                                        {#console.log("image-" + id)#}
+                                        console.log(s.sound)
+
+
+                                    },
+                                    error: function (e) {
+                                        console.log("e")
+                                    },
+
+
+                                }
+                            )
+
+
+                        },
+                        error: function (error) {
+                            console.log("error 5")
+
+                        }
+
+                    }
+                )
+
+            }
+        )
+

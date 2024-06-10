@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+                        <div class="in">
+                            <br>
+                            <h3 class="name">بر اساس استان</h3>
+                        </div>
+                    </div>
+
+
+                    <ul class="listview image-listview media flush transparent pt-1">
+                        {% for st in stateno %}
+                            <li>
+                                <a href="/yadbood/state/{{ st.2 }}/1" class="item">
+                                    <div class="icon-box bg-secondary">
+                        <ion-icon name="golf-outline" role="img" class="md hydrated" aria-label="megaphone outline"></ion-icon>
+                    </div>
+                                    <div class="in">
+                                        <div>
+                                            {{ st.0 }}
+
+                                            <div class="text-muted">{{ st.1 }} یادبود</div>
+                                        </div>
+                                        <span class="badge badge-primary">{{ st.1 }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+
+
+
+                    </ul>

@@ -1,0 +1,112 @@
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 630, in _exec
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "passenger_wsgi.py", line 8, in <module>
+    wsgi = imp.load_source('wsgi', 'passenger_wsgi.py')
+  File "/opt/alt/python37/lib64/python3.7/imp.py", line 169, in load_source
+    module = _exec(spec, sys.modules[name])
+  File "<frozen importlib._bootstrap>", line 623, in _exec
+  File "<frozen importlib._bootstrap>", line 568, in _init_module_attrs
+  File "<frozen importlib._bootstrap>", line 409, in cached
+  File "<frozen importlib._bootstrap_external>", line 372, in _get_cached
+  File "<frozen importlib._bootstrap_external>", line 313, in cache_from_source
+  File "<frozen importlib._bootstrap_external>", line 59, in _path_join
+  File "<frozen importlib._bootstrap_external>", line 59, in <listcomp>
+RecursionError: maximum recursion depth exceeded while calling a Python object

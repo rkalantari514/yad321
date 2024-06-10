@@ -1,0 +1,94 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+{% block content %}
+    <div class="mt-2 pr-2 pl-2">
+
+        <div class="row justify-content-center">
+            <div class="in">
+                <h3 class="name">بیشترین صلوات هدیه شده</h3>
+            </div>
+        </div>
+
+
+        <div class="listview-title mt-2">لیست همه یادبود های منتشر شده</div>
+        <ul class="listview image-listview media mb-2">
+
+            {% for yad in page_obj %}
+                <li>
+                    <a href="/yadbood/{{ yad.id }}" class="item">
+                        <div class="imageWrapper">
+                            <img src="{{ yad.master_image.url }}" alt="{{ yad.title }} {{ yad.name }} {{ yad.family }}"
+                                 class="imaged w76">
+                        </div>
+                        <div class="in">
+                            <div>
+                                {{ yad.title }} {{ yad.name }} {{ yad.family }}
+                                <div class="text-muted">
+                                    {{ yad.salavat_count }} صلوات - {{ yad.fatehe_count }} فاتحه - {{ yad.quran_count }} صفحه قرآن
+
+
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </a>
+                </li>
+
+
+            {% endfor %}
+
+
+        </ul>
+
+
+
+    </div>
+
+
+
+    <nav>
+        <ul class="pagination pagination-secondary">
+
+            {% if page_obj.has_previous %}
+                <li class="page-item "><a class="page-link" href="{{ page_obj.previous_page_number }}">قبلی</a></li>
+            {% endif %}
+
+
+
+            {% for page in paginator.page_range %}
+                {% if page > stpage and  page < finpage %}
+                    {% if page == page_obj.number %}
+                        <li class="page-item"><a class="page-link bg-primary" href="{{ page }}">{{ page }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="{{ page }}">{{ page }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+
+            {% if page_obj.has_next %}
+                <li class="page-item "><a class="page-link" href="{{ page_obj.next_page_number }}">بعدی</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

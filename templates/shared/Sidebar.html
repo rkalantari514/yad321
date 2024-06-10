@@ -1,0 +1,153 @@
+{% load static %}
+
+<!-- App Sidebar -->
+<div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="avatar">
+
+                        {% if user.is_authenticated %}
+                            <a href="/profile/{{ user.id }}" class="button">
+                                <img src="{{ user.profile_pic.url }}" alt="avatar" class="imaged w32 h32 rounded">
+                            </a>
+
+                        {% else %}
+
+
+
+
+                            <a href="/register" class="button">
+                                <div class="iconedbox iconedbox bg-primary">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                </div>
+                            </a>
+                        {% endif %}
+
+
+                    </div>
+
+
+                    <div class="in">
+                        {% if user.is_authenticated %}
+                        <a href="/profile/{{ user.id }}">
+                            <strong>{{ user.profile_name }}</strong>
+                            </a>
+
+                        {% endif %}
+                    </div>
+                    <a href="javascript:;" class="close-sidebar-button" data-dismiss="modal">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
+                <!-- * profile box -->
+
+                <ul class="listview flush transparent no-line image-listview mt-2">
+                    <li>
+                        <a href="/" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="home-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                خانه
+                            </div>
+                        </a>
+                    </li>
+
+
+
+
+
+
+
+
+                    <li>
+                        <a href="{% url "create" %}" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="cube-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                ایجاد یادبود
+                            </div>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{% url 'states' %}" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="location-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                <div>استان ها</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/contact-us" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="mail-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                <div>تماس با ما</div>
+                            </div>
+                        </a>
+                    </li>
+
+
+
+
+                    <li>
+                        <div class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="moon-outline" role="img" class="md hydrated"
+                                          aria-label="moon outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                <div>حالت تیره</div>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input dark-mode-switch"
+                                           id="darkmodesidebar" checked="checked">
+                                    <label class="custom-control-label" for="darkmodesidebar"></label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- sidebar buttons -->
+                <div class="sidebar-buttons">
+                    <a href="/" class="button">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </a>
+                    {% if user.is_authenticated %}
+                        <a href="/profile/{{ user.id }}" class="button">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </a>
+                    {% else %}
+                        <a href="/register" class="button">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </a>
+                    {% endif %}
+
+
+
+                    <a href="{% url 'logout' %}" class="button">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </a>
+                    {#                     <a href="javascript:;" class="button">#}
+                    {#                        <ion-icon name="log-out-outline"></ion-icon>#}
+                    {#                    </a>#}
+
+                </div>
+                <!-- * sidebar buttons -->
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- * App Sidebar -->

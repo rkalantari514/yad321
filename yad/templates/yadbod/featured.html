@@ -1,0 +1,19 @@
+<div class="mt-2 pr-2 pl-2">
+    <div class="row justify-content-center">
+        <div class="in">
+            <h3 class="name">برگزیده ها</h3>
+        </div>
+    </div>
+    <div class="row">
+        {% for yad in yadbood %}
+                <div class="col-4 mb-2">
+                    <a href="yadbood/{{ yad.id }}">
+                        <img src="{{ yad.master_image.url }}" alt="{{ yad.name }} {{ yad.family }}" class="imaged w-100">
+                        <div class="in">
+                            <h5 class="subtext">{{ yad.title }} {{ yad.name }} {{ yad.family }}</h5>
+                        </div>
+                    </a>
+                </div>
+        {% endfor %}
+    </div>
+</div>

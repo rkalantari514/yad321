@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.629" height="15.08" viewBox="0 0 8.629 15.08">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #a1a1a2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.178px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="Page-1" transform="translate(1.089 1.54)">
+    <g id="Listview">
+      <path id="Path" class="cls-1" d="M120,122l-6,6,6,6" transform="translate(-114 -122)"/>
+    </g>
+  </g>
+</svg>

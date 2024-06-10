@@ -1,0 +1,335 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+{% block content %}
+    <div id="appCapsule">
+        <div class="section mt-2">
+            <div class="profile-head">
+                <div class="avatar">
+                    <img src="{{ profilepic.url }}" alt="avatar" class="imaged w64 h64 rounded">
+                </div>
+                <div class="in">
+                    <h3 class="name">{{ profilename }}
+                        <ion-icon name="share-social-outline" data-toggle="modal"
+                                  data-target="#actionSheetShareBox" role="img" class="md hydrated"
+                                  aria-label="arrow up outline"></ion-icon>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="section full mt-2">
+            <div class="profile-stats pl-2 pr-2">
+                <a href="#" class="item">
+                    <strong>{{ profilesalavat }}</strong>صلواتها
+                </a>
+                <a href="#" class="item">
+                    <strong>{{ profilefatehe }}</strong>فاتحه ها
+                </a>
+                <a href="#" class="item">
+                    <strong>{{ profilequran }}</strong>صفحات قرآن
+                </a>
+            </div>
+        </div>
+
+        <div class="section mt-1 mb-2">
+            <div class="profile-info">
+                <div class=" bio">
+                    {{ profile_user.profile_bio }}
+                </div>
+            </div>
+        </div>
+
+        <div class="section full">
+            <div class="wide-block transparent p-0">
+                <ul class="nav nav-tabs lined iconed" role="tablist">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#feed" role="tab">
+                            <ion-icon name="grid-outline" role="img" class="md hydrated"
+                                      aria-label="grid outline"></ion-icon>
+                            <div class="row">یادبودها</div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#bookmarks" role="tab">
+                            <ion-icon name="repeat-outline" role="img" class="md hydrated"
+                                      aria-label="bookmark outline"></ion-icon>
+                            <div class="row">باز نشر ها</div>
+
+                        </a>
+                    </li>
+                    {% if can_edit_profile %}
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
+                                <ion-icon name="settings-outline" role="img" class="md hydrated"
+                                          aria-label="settings outline"></ion-icon>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- tab content -->
+        <div class="section full mb-2">
+            <div class="tab-content">
+
+                <!-- feed -->
+                <div class="tab-pane fade show active" id="feed" role="tabpanel">
+                    <div class="mt-2 pr-2 pl-2">
+                        <div class="row">
+                            {% for yad in myyad %}
+                                <div class="col-4 mb-2">
+                                    <a href="/yadbood/{{ yad.id }}">
+                                        <img src="{{ yad.master_image.url }}" alt="image" class="imaged w-100">
+                                        <div class="row justify-content-center">
+                                            <h6>{{ yad.title }} {{ yad.name }} {{ yad.family }}</h6>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {#                    <div class="pr-2 pl-2">#}
+                    {#                        <a href="#" class="btn btn-primary btn-block">تصاویر بیشتر</a>#}
+                    {#                    </div>#}
+                </div>
+                <!-- * feed -->
+
+                <!-- * friends -->
+                <!-- * friends -->
+
+                <!--  bookmarks -->
+                <div class="tab-pane fade" id="bookmarks" role="tabpanel">
+                    <div class="mt-2 pr-2 pl-2">
+                        <div class="row">
+
+                            {% for yad in otheryad %}
+                                <div class="col-4 mb-2">
+                                    <a href="/yadbood/{{ yad.id }}">
+
+                                        <img src="{{ yad.master_image.url }}" alt="image" class="imaged w-100">
+                                        <div class="row justify-content-center">
+                                            <h5>{{ yad.title }} {{ yad.name }} {{ yad.family }}</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <!-- * bookmarks -->
+
+
+                <!-- settings -->
+                {% if can_edit_profile %}
+                    <div class="tab-pane fade" id="settings" role="tabpanel">
+                        <div id="appCapsule">
+
+                            <div class="login-form">
+                                <div class="section">
+                                    <h4>تنظیمات پروفایل کاربری</h4>
+                                    <h6>لطفا اطلاعات زیر زا تکمیل کنید</h6>
+                                    <h4
+                                    >شماره تلفن{{ profile_user.mobile }}</h4>
+                                </div>
+                                <div class="section mt-2 mb-5">
+                                    <form method="post" action="#" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-group boxed">
+                                            <div class="input-wrapper">
+                                                {#                                            <h4>نام کاربری فعلی: {{ profile_user.profile_name }}</h4>#}
+                                                {{ edit_form.profile_name }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group boxed">
+                                            <div class="input-wrapper">
+                                                {#                                            <h4>بیوگرافی فعلی: {{ profile_user.profile_bio }}</h4>#}
+                                                {{ edit_form.profile_bio }}
+                                            </div>
+                                        </div>
+
+
+                                        {#                                    =========================================================#}
+                                        <h4>تصویر پروفایل</h4>
+
+                                        <div class="custom-file-upload w-50">
+                                            {{ edit_form.profile_pic }}
+                                            <label for="fileuploadInput">
+                            <span>
+                                <strong>
+                                    <ion-icon name="cloud-upload-outline" role="img" class="md hydrated"
+                                              aria-label="cloud upload outline"></ion-icon>
+                                    <i>برای بارگذاری ضربه بزنید</i>
+                                </strong>
+                            </span>
+                                            </label>
+                                        </div>
+
+                                        {#                                    ==========================================#}
+
+
+                                        <div class="form-button-group">
+                                            <button type="submit" class="btn btn-primary btn-block btn-lg">ثبت</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- * settings -->
+            </div>
+        </div>
+        <!-- * tab content -->
+    </div>
+
+
+    <div class="fab-button animate bottom-right dropdown">
+        <a href="#" class="fab" data-toggle="dropdown" aria-expanded="false">
+            <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+        </a>
+        <div class="dropdown-menu" style="">
+            <a class="dropdown-item" href="/create">
+
+                <ion-icon name="document-text-outline" role="img" class="md hydrated"
+                          aria-label="musical notes outline"></ion-icon>
+                <p>یادبود جدید</p>
+            </a>
+
+        </div>
+    </div>
+
+
+    <!-- Share Action Sheet -->
+    <div class="modal fade action-sheet inset" id="actionSheetShareBox" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">اشتراک گذاری با</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="action-sheet-content text-center">
+                        <div class="row">
+
+
+                            {% comment %}
+                            <div class="col-2">
+                                <a href="#" class="btn btn-icon btn-facebook" data-dismiss="modal">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                            </div>
+                            {% endcomment %}
+
+
+                            {#SMS android#}
+                            <div class="col-2 ">
+                                {#                            <div class="col-2 android-detection">#}
+                                <a href="{{ smsandroid }}" class="btn btn-icon btn-twitter" data-dismiss="modal">
+                                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                                </a>
+                            </div>
+
+                            {#SMS ios#}
+                            <div class="col-2 ios-detection">
+                                <a href="{{ smsforios }}" class="btn btn-icon btn-twitter" data-dismiss="modal">
+                                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                                </a>
+                            </div>
+
+
+                            {# telegram#}
+                            <div class="col-2">
+                                <a href="{{ telegram }}" class="btn btn-icon btn-primary" data-dismiss="modal">
+                                    <ion-icon name="paper-plane-outline"></ion-icon>
+                                </a>
+                            </div>
+
+
+                            {% comment %}                            <div class="col-2">
+                                <a href="#" class="btn btn-icon btn-instagram" data-dismiss="modal">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                            </div>{% endcomment %}
+
+
+                            {#whatsapp#}
+
+                            <div class="col-2">
+                                <a href="{{ whatsapp }}"
+                                   class="btn btn-icon btn-whatsapp"
+                                   target="_blank">
+                                    <ion-icon name="logo-whatsapp"></ion-icon>
+                                </a>
+                            </div>
+
+
+                            {# eitaa#}
+                            <div class="col-2">
+                                <a href="{{ eitaa }}"
+                                   class="btn btn-icon btn-warning" target="_blank">
+                                    <img src="https://eitaa.com/assets/images/ico/icon50.png" class="image btn-icon">
+                                </a>
+                                </a>
+                            </div>
+
+
+                            {#bale#}
+                            <div class="col-2">
+                                <a href="{{ bale }}"
+                                   class="btn btn-icon " target="_blank">
+                                    <img src="https://bale.ai/img/l.svg" class="image btn-icon">
+                                </a>
+                            </div>
+
+
+                            {#  sorosh#}
+                            <div class="col-2">
+                                <a href="{{ sorosh }}"
+                                   class="btn btn-icon " target="_blank">
+                                    <img src="https://hi.sapp.ir/images/logo.png" class="image btn-icon">
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * Share Action Sheet -->
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

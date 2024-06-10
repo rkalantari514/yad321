@@ -1,0 +1,267 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+{% load humanize %}
+{% block content %}
+    <div id="appCapsule">
+
+        <a href="/">
+            <div class="section mt-2">
+                <div class="profile-head">
+                    <div class="avatar">
+                        <img src="{{ site_setting.logo.url }}" alt="لوگوی یاد او" class="imaged w120 bg-transparent">
+                    </div>
+                    <div class="in">
+                        <h3 class="name">یاد او</h3>
+                        <h5 class="subtext">سامانه یادبود مجازی . نسخه آزمایشی </h5>
+                    </div>
+                </div>
+            </div>
+
+        </a>
+        <div class="section full mt-2">
+            <div class="profile-stats pl-2 pr-2">
+                <a href="yadbood/total_random/1" class="item">
+                    <strong>{{ quran_set.total_yadbood|intcomma }}</strong>یادبودها
+                </a>
+                
+                <a href="/yadbood/total_salavat/1" class="item">
+                    <strong>{{ quran_set.total_salavat|intcomma }}</strong>صلوات
+                </a>
+                <a href="/yadbood/total_fatehe/1" class="item">
+                    <strong>{{ quran_set.total_fatehe|intcomma }}</strong>فاتحه
+                </a>
+
+                <a href="/yadbood/total_quran/1" class="item">
+                    <strong>{{ quran_set.total_count|intcomma }}</strong>ختم قرآن
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                {#                <div class="section mt-1 mb-2">#}
+                {#                    <div class="profile-info">#}
+                {#                        <div class=" bio">#}
+                {{ site_setting.about | linebreaksbr }}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+            </div>
+
+
+            <div class="col-4">
+                <div id="circle3" class="circle-progress">
+                    <div class="in">
+                        <div class="text">
+                            <h3 class="value">{{ quran_page_page1 }}</h3>
+                            صفحات ختم قرآن جاری
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        {#        <div class="section full">#}
+        {#            <div class="wide-block transparent p-0">#}
+        {#            </div>#}
+        {#        </div>#}
+
+        {#    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#}
+        <div class="section full">
+            <div class="wide-block transparent p-0">
+                <ul class="nav nav-tabs lined iconed" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#feed" role="tab">
+                            <ion-icon name="time-outline"></ion-icon>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#friends" role="tab">
+                            <ion-icon name="star"></ion-icon>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#bookmarks" role="tab">
+                            <ion-icon name="location-outline"></ion-icon>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- tab content -->
+        <div class="section full mb-2">
+            <div class="tab-content">
+
+                <!-- feed -->
+                <div class="tab-pane fade show active" id="feed" role="tabpanel">
+                    <div class="mt-2 pr-2 pl-2">
+
+                        <div class="row justify-content-center">
+                            <div class="in">
+                                <h3 class="name">آخرین یادبودها</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% for yad in object_list %}
+                                <div class="col-4 mb-2">
+                                    <a href="yadbood/{{ yad.id }}">
+                                        <img src="{{ yad.master_image.url }}" alt="{{ yad.name }} {{ yad.family }}" class="imaged w-100">
+                                        <div class="in">
+                                            <h5 class="subtext">{{ yad.title }} {{ yad.name }} {{ yad.family }}</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+{#                    <div class="pr-2 pl-2">#}
+{#                        <a href="#" class="btn btn-primary btn-block">تصاویر بیشتر</a>#}
+{#                    </div>#}
+                </div>
+                <!-- * feed -->
+
+                <!-- * friends -->
+                <div class="tab-pane fade" id="friends" role="tabpanel">
+                    {% render_partial 'featured_render' %}
+
+{#                    <div class="pr-2 pl-2">#}
+{#                        <a href="#" class="btn btn-primary btn-block">تصاویر بیشتر</a>#}
+{#                    </div>#}
+                </div>
+                <!-- * friends -->
+
+                <!--  bookmarks -->
+                <div class="tab-pane fade" id="bookmarks" role="tabpanel">
+                {%  render_partial 'for_city_tab' %}
+
+                </div>
+                <!-- * bookmarks -->
+            
+            </div>
+        </div>
+        <!-- * tab content -->
+
+    <div class="fab-button animate bottom-right dropdown">
+            <a href="#" class="fab" data-toggle="dropdown" aria-expanded="false">
+                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+            </a>
+            <div class="dropdown-menu" style="">
+                <a class="dropdown-item" href="/create">
+
+                    <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="musical notes outline"></ion-icon>
+                    <p>یادبود جدید</p>
+                </a>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+        {#    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#}
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            $(".salavat-btn").click(function (e) {
+                    e.preventDefault()
+                    var id = $(this).attr("data-pk")
+                    var yad = "/yadbod/" + id
+                    var url = $(this).attr("href")
+
+                    $.ajax({
+                            url: url,
+                            success: function (success) {
+                                {#console.log("success")#}
+                                $.ajax(
+                                    {
+                                        url: yad,
+                                        success: function (s) {
+                                            {#console.log("s")#}
+                                            $('#salavat-' + id).html(s.salavat_count)
+                                            console.log("salavat-" + id)
+                                            console.log(s.salavat_count)
+
+
+                                        },
+                                        error: function (e) {
+                                            console.log("e")
+                                        },
+
+
+                                    }
+                                )
+
+
+                            },
+                            error: function (error) {
+                                console.log("error 1")
+
+                            }
+
+                        }
+                    )
+
+                }
+            )
+
+
+        </script>
+
+
+        <!-- jQuery Circle Progress -->
+        <script src="{% static 'js/plugins/jquery-circle-progress/circle-progress.min.js' %}"></script>
+        <script>
+            $('#circle1').circleProgress({
+                value: 0.75,
+                size: 500, // do not delete this
+                fill: {
+                    gradient: ["#1E74FD", "#592BCA"]
+                },
+                animation: {
+                    duration: 2000
+                }
+            });
+            $('#circle2').circleProgress({
+                value: 0.25,
+                size: 500, // do not delete this
+                fill: {
+                    gradient: ["#EC4433", "#FE9500"]
+                },
+                animation: {
+                    duration: 2000
+                }
+            });
+            $('#circle3').circleProgress({
+                value: {{quran_page_page100}},
+                {#value: .0016556291390728,#}
+                size: 500, // do not delete this
+                fill: {
+                    gradient: ["#00CDFF", "#1E74FD"]
+                },
+                animation: {
+                    duration: 2000
+                }
+            });
+        </script>
+
+        </body>
+
+ 
+
+
+
+
+
+
+{% endblock %}

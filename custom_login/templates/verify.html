@@ -1,0 +1,152 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% block content %}
+
+
+    <div id="appCapsule">
+
+        <div class="login-form">
+            <div class="section">
+                <h1>تایید هویت</h1>
+                <h4>اعنبار کد ارسالی به شماره شما:</h4>
+                <h4 id="demo"></h4>
+
+{#                <div id="demo4" class="invisible">#}
+                <div>
+
+
+
+ </div>
+
+
+
+
+            </div>
+            <div class="section mt-2 mb-5">
+                <form method="post" action="#" enctype=multipart/form-data>
+                    {% csrf_token %}
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            {{ verify_form.yourotp }}
+                            {% for error in verify_form.yourotp.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                            <div class="text-danger"><p>{{ message }}</p></div>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-button-group">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">تایید</button>
+                    </div>
+
+                </form>
+
+
+{#            <a id="demo4" href="/verify/resend_otp/{{ yormobile }}">#}
+ <a id="demo4" href="">
+       <button id="demo5" class="btn btn-primary">
+{#       <button  class="btn btn-primary ">#}
+           <h4 id="demo2"></h4>
+       </button>
+</a>
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("{{diff_time}}").getTime();
+        var countDownDate2 = new Date("{{resend_count}}").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+            // Get today's date and time
+            var now = new Date().getTime();
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+
+            // Display the result in the element with id="demo"
+            {#document.getElementById("demo").innerHTML = days + "d " + hours + "h "#}
+            {#+ minutes + "m " + seconds + "s ";#}
+
+
+            document.getElementById("demo").innerHTML = days + " روز " + hours + " ساعت "
+                + minutes + " دقیقه  " + seconds + " ثانیه ";
+
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "پایان یافته است";
+                document.getElementById("demo3").className = "visible"
+            }
+
+        }, 1000);
+
+
+
+        {#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#}
+
+                // Update the count down every 1 second
+        var y = setInterval(function () {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance2 = countDownDate2 - now;
+
+            // Time calculations for days, hours, minutes and seconds
+           var minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+           var seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+
+            document.getElementById("demo2").innerHTML = "  ارسال مجدد " +"("+ seconds2 + " : " + minutes2 +")" ;
+            document.getElementById("demo4").removeAttribute('href')
+            document.getElementById("demo5").className= "btn btn-secondary disabled";
+            // If the count down is finished, write some text
+            if (distance2 < 0) {
+                clearInterval(y);
+                document.getElementById("demo2").innerHTML = " ارسال مجدد";
+                document.getElementById("demo5").className= "btn btn-primary";
+                document.getElementById("demo4").setAttribute("href","/verify/resend_otp/{{ yormobile }}")
+                ('href', obj.attributes['href_bak'].nodeValue);
+            }
+
+        }, 1000);
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+{% endblock %}

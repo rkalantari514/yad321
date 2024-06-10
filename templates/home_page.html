@@ -1,0 +1,19 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+
+{% block content %}
+<!-- loader -->
+    <div id="loader">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- * loader -->
+{% render_partial 'Capsule' %}
+{% render_partial 'Bottom' %}
+
+{% render_partial 'welcome' %}
+
+{% endblock %}
+
+
+

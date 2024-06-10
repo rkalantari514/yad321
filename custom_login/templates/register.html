@@ -1,0 +1,121 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    <div id="appCapsule">
+
+        <div class="login-form">
+            <div class="section">
+                <h1>ثبت نام / ورود</h1>
+                <h4>برای ورود یا ثبت نام شماره موبایل خود را وارد کنید</h4>
+            </div>
+            <div class="section mt-2 mb-5">
+
+
+                <form method="post" action="#" enctype=multipart/form-data>
+                    {% csrf_token %}
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            {{ register_form.mobile }}
+                            {% for error in register_form.mobile.errors %}
+                                <div class="text-danger"><p>{{ error }}</p></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div class=" mt-1 text-right">
+                        <div class="custom-control custom-checkbox">
+{#                              <input type="checkbox" class="custom-control-input">#}
+                             {{ register_form.condition }}
+                            <label class="custom-control-label text-muted" for="customChecka1">موافقت با </label>
+                            <a data-toggle="modal" data-target="#ModalForm" class="text-info">شرایط و مقررات</a>
+
+{#                                    href="javascript:;">شرایط و مقررات</a></label>#}
+
+                            {% for error in register_form.condition.errors %}
+                                <div class="text-danger"><p>{{ error }}</p></div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+{#****************************************************************************#}
+
+
+        <!-- Modal Form -->
+        <div class="modal fade modalbox" id="ModalForm" data-backdrop="static" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">قوانین و مقررات</h5>
+                        <a href="javascript:;" data-dismiss="modal">بستن</a>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="modal-body" >
+                       {{ site_setting.conditions | linebreaksbr }}
+
+                    </div>
+
+
+
+
+                        <div class="login-form">
+                            <div class="section mt-4 mb-5">
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-primary btn-block btn-lg"
+                                            data-dismiss="modal">بستن</button>
+                                    </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Modal Form -->
+
+
+
+
+
+{#****************************************************************************#}
+
+
+
+
+
+
+
+
+
+                    <div class="form-button-group">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">ثبت نام</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

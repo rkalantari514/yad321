@@ -1,0 +1,62 @@
+{% load static %}
+{% load render_partial %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>یاد او | {{ title}}</title>
+    <meta name="description" content="{{ title }} یاد او سامانه مجازی برای برگزاری یادبود، اهدا صلوات، فاتحه و ختم قرآن کریم می باشد.
+در این سامانه ختم قرآن به صورت سراسری و در بین همه یادبود ها انجام می شود.">
+    <meta name="keywords" content="سامانه یاد او، یاد، ختم قرآن، ختم مجازی،  قرآن، فاتحه"/>
+<meta name="msapplication-TileImage" content="https://yadeo.ir{{ yad.master_image.url }}">
+     <meta property="og:title" content="{{ yad.title }} {{ yad.name }} {{ yad.family }}">
+        <meta property="og:description" content="صفحه یادبود مجازی {{ yad.title }} {{ yad.name }} {{ yad.family }}">
+		<meta property="og:image" itemprop="image" content="https://yadeo.ir{{ yad.master_image.url }}">
+		<meta property="og:url" content="yadeo.ir/yadbood/{{ yad.id }}">
+		<!--<meta property="og:type" content="website" />-->
+        <!--<meta property="og:locale" content="fa_IR" />-->
+		<!--<link rel="shortcut icon" href="https://yadeo.ir{{ yad.master_image.url }}" />-->
+		    {% include 'shared/_HeaderReferences.html' %}
+		    <script>
+            !function(e,t,n){e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript/gLUb5Ctt/native-Yadeo.ir-38049/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l)}(window,document,"yektanet");
+        </script>
+
+
+</head>
+
+<body>
+
+<div class="row justify-content-md-center">
+<div class="col-md-5 col-sm-12" >
+{% block header_ref %}{% endblock %}
+
+{% render_partial 'header' %}
+{% render_partial 'Search' %}
+
+{% block content %}{% endblock %}
+
+{% render_partial 'Sidebar' %}
+{#{% render_partial 'Bottom' %}#}
+<!-- * welcome notification -->
+{% render_partial 'ShareActionSheet' %}
+{% block footer_ref %}{% endblock %}
+
+
+</div>
+</div>
+
+    {% include 'shared/_FooterReferences.html' %}
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% load jalali_tags %}
+{% load static %}
+{% block content %}
+
+
+
+    <div id="appCapsule">
+
+        <div class="login-form">
+            <div class="section">
+                <h1>ویرایش یادبود</h1>
+                <h4>برای اصلاح یادبود فرم زیر را ویرایش کنید</h4>
+            </div>
+
+<div class="container col-10 justify-content-center">
+                <form method="post" action="#" enctype=multipart/form-data
+                  id="yadForm" data-cities-url="{% url 'ajax_load_cities2' %}">
+                {% csrf_token %}
+
+                <div class="form-group boxed">
+                    <div class="input-wrapper">
+                        {{ edit_form.title }}
+                        {#                        {% for error in edit_form.title.errors %}#}
+                        {#                            <p class="text-danger">{{ error }}</p>#}
+                        {#                        {% endfor %}#}
+                    </div>
+                </div>
+
+                <div class="form-group boxed">
+                    <div class="input-wrapper">
+                        {{ edit_form.name }}
+                        {#                        {% for error in edit_form.name.errors %}#}
+                        {#                            <p class="text-danger">{{ error }}</p>#}
+                        {#                        {% endfor %}#}
+                    </div>
+                </div>
+
+
+                <div class="form-group boxed">
+                    <div class="input-wrapper">
+                        {{ edit_form.family }}
+                    </div>
+                </div>
+                <div class="form-group boxed">
+                    <div class="input-wrapper">
+                        {{ edit_form.description }}
+                    </div>
+                </div>
+
+
+                <div class="form-group boxed">
+                    <div class="input-wrapper">
+                        <label class="label">استان</label>
+                        {{ edit_form.state }}
+
+                    </div>
+                </div>
+
+
+                <div class="form-group boxed">
+                    <div class="input-wrapper">
+                        <label class="label">شهر</label>
+
+                        {{ edit_form.city }}
+                    </div>
+                </div>
+
+
+                <div class="form-group boxed">
+                    <div class="input-wrapper">
+                        تاریخ فوت/شهادت:
+                        {{ edit_form.death_date }}
+                    </div>
+                </div>
+
+
+                <h4>تصویر </h4>
+                    <img src="{{ yadbood.master_image.url }}" class="w-50">
+
+                <div class="row  justify-content-center">
+                    <div class="col-8">
+                <div class="custom-file-upload w-70 ">
+                    {{ edit_form.image }}
+                    <label for="fileuploadInput">
+                            <span>
+                                <strong>
+                                    <ion-icon name="cloud-upload-outline" role="img" class="md hydrated "
+                                              aria-label="cloud upload outline"></ion-icon>
+                                    <i>برای تغییر عکس ضربه بزنید</i>
+                                </strong>
+                            </span>
+                    </label>
+                </div>
+                </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary btn-block btn-lg">ثبت </button>
+
+
+            </form>
+
+</div>
+
+        </div>
+
+
+    </div>
+
+
+   <link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+    <script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#id_state").change(function () {
+            const url = $("#yadForm").attr("data-cities-url");  // get the url of the `load_cities` view
+            const stateId = $(this).val();  // get the selected state ID from the HTML input
+
+            $.ajax({                       // initialize an AJAX request
+                url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+                data: {
+                    'state_id': stateId       // add the state id to the GET parameters
+                },
+                success: function (data) {   // `data` is the return of the `load_cities` view function
+                    $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+                    /*
+
+                    let html_data = '<option value="">---------</option>';
+                    data.forEach(function (city) {
+                        html_data += `<option value="${city.id}">${city.name}</option>`
+                    });
+                    console.log(html_data);
+                    $("#id_city").html(html_data);
+
+                    */
+                }
+            });
+
+        });
+    </script>
+
+
+{% endblock %}
+
+
+

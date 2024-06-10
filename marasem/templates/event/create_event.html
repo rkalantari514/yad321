@@ -1,0 +1,140 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% load jalali_tags %}
+{% load static %}
+
+{% block content %}
+
+
+<div id="appCapsule">
+        <div class="login-form">
+            <div class="section">
+                <h3> ایجاد مراسم </h3>
+                <h4>{{ yad.title }} {{ yad.name }} {{ yad.family }}</h4>
+            </div>
+            <div class="container col-10 justify-content-center">
+
+
+
+                <form method="post" action="#" enctype=multipart/form-data
+                      id="eventForm" data-cities-url="{% url 'ajax_load_cities' %}">
+                    {% csrf_token %}
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            {{ create_form.title }}
+                          </div>
+                    </div>
+
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            {{ create_form.family }}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <label class="label">استان</label>
+                            {{ create_form.state }}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            {{ create_form.city }}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            {{ create_form.address }}
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            تاریخ مراسم:
+                            {{ create_form.event_date }}
+                        </div>
+                    </div>
+
+
+                   <div class="form-group boxed">
+                        <div class="input-wrapper">
+                                                        <label class="label">ساعت شروع:</label>
+
+
+                            {{ create_form.starttime }}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                                                        <label class="label">ساعت پایان:</label>
+                            {{ create_form.finishtime }}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">ثبت</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_state").change(function () {
+        const url = $("#eventForm").attr("data-cities-url");  // get the url of the `load_cities` view
+        const stateId = $(this).val();  // get the selected state ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'state_id': stateId       // add the state id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (city) {
+                    html_data += `<option value="${city.id}">${city.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_city").html(html_data);
+
+                */
+            }
+        });
+
+    });
+</script>
+<script>
+$('.time-picker').timepicker({
+            showMeridian: false
+        });
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
