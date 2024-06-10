@@ -5,409 +5,384 @@
 {% block content %}
 
 
+<!-- App Capsule -->
+<div id="appCapsule">
+
+    <!-- carousel -->
+    <div class="carousel-full owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
 
 
+        <div class="owl-stage-outer ">
+            <div class="owl-stage "
+                 style="transform: translate3d(1622px, 0px, 0px); transition: all 0s ease 0s; width: 5677px;">
 
-
-    <!-- App Capsule -->
-    <div id="appCapsule">
-
-        <!-- carousel -->
-        <div class="carousel-full owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
-
-
-            <div class="owl-stage-outer ">
-                <div class="owl-stage "
-                     style="transform: translate3d(1622px, 0px, 0px); transition: all 0s ease 0s; width: 5677px;">
-
-                    <div class=" owl-item active" style="width: 811px;">
-                        <div class="row justify-content-center">
-                            <div class="item col-9 ">
-                                <img src="{{ yad.master_image.url }}" alt="{{ yad.name }} {{ yad.family }}"
-                                     class="justify-content-center imaged w-100 ">
-                            </div>
+                <div class=" owl-item active" style="width: 811px;">
+                    <div class="row justify-content-center">
+                        <div class="item col-9 ">
+                            <img src="{{ yad.master_image.url }}" alt="{{ yad.name }} {{ yad.family }}"
+                                 class="justify-content-center imaged w-100 ">
                         </div>
-
-
                     </div>
 
 
                 </div>
+
+
             </div>
-
-            <div class="owl-dots disabled"></div>
         </div>
-        <!-- * carousel -->
-        <div class="section full">
-            <div class="wide-block pt-2 pb-2 product-detail-header">
+
+        <div class="owl-dots disabled"></div>
+    </div>
+    <!-- * carousel -->
+    <div class="section full">
+        <div class="wide-block pt-2 pb-2 product-detail-header">
 
 
-                <ul class="listview image-listview">
-                    <li>
-                        <div class="item">
-                            {{ yad.title }} {{ yad.name }} {{ yad.family }}
-                            {% if request.user.is_authenticated %}
-                                {% if  reyad_permision %}
-                                    <a class="{{ icon }}" href="{% url 'reyad' yad.pk %}" data-pk='{{ yad.pk }}'
-                                       id="reyad-{{ yad.pk }}">
-                                        <ion-icon id="reyad-{{ yad.pk }}" name="repeat"
-                                                  data-toggle="tooltip" title="باز نشر"
-                                                  data-placement="bottom"></ion-icon>
-                                    </a>
-                                {% endif %}
-                            {% endif %}
+            <ul class="listview image-listview">
+                <li>
+                    <div class="item">
+                        {{ yad.title }} {{ yad.name }} {{ yad.family }}
+                        {% if request.user.is_authenticated %}
+                        {% if reyad_permision %}
+                        <a class="{{ icon }}" href="{% url 'reyad' yad.pk %}" data-pk='{{ yad.pk }}'
+                           id="reyad-{{ yad.pk }}">
+                            <ion-icon id="reyad-{{ yad.pk }}" name="repeat"
+                                      data-toggle="tooltip" title="باز نشر"
+                                      data-placement="bottom"></ion-icon>
+                        </a>
+                        {% endif %}
+                        {% endif %}
 
-                            <div class="icon-box" data-toggle="tooltip" title="اشتراک گذاری"
-                                 data-placement="bottom">
-                                <ion-icon name="share-social-outline" data-toggle="modal"
-                                          data-target="#actionSheetShareBox" role="img" class="md hydrated"
-                                          aria-label="arrow up outline"></ion-icon>
-                            </div>
-
-                        </div>
-
-
-                        <div class="container">
-                            <div class="row">
-                                <a href="/profile/{{ yad.owner.id }}"></a>
-
-
-                                <div class="text"><h5 class="subtext">
-                                    <a href="/yadbood/state/{{ state_id }}/1">{{ yad.state }}</a> -
-                                    <a href="/yadbood/city/{{ city_id }}/1">{{ yad.city }}</a>
-
-                                </h5></div>
-
-                            </div>
-
-                            <div class="row">
-                                <a href="/profile/{{ yad.owner.id }}">
-                                    <div class="text"><h5 class="subtext"> ایجاد شده
-                                        توسط: {{ yad.owner.profile_name }}</h5></div>
-                                </a>
-                            </div>
-
-
-                        </div>
-
-
-                    </li>
-
-
-                </ul>
-
-
-
-                {% for mar in marasem %}
-                    {% if forloop.first %}
-
-                        <div class="listview item">مراسم ها</div>
-                    {% endif %}
-
-                    <div class="card text-white bg-secondary mb-2">
-                        <div class="card-header">{{ mar.title }} 
-                    <!--    ({{ mar.event_date|timeuntil }} دیگر) -->
-
-                            {#       ============================================#}
-
-                            {% if request.user.is_authenticated %}
-                                {% if event_permision %}
-
-                                    <a href="/editevent/{{ yad.id }}/{{ mar.id }}">
-<span class="iconedbox bg-primary" data-toggle="tooltip" title="ویرایش مراسم"
-      data-placement="bottom">
-    <ion-icon name="create-outline" role="img" class="md hydrated"></ion-icon>
-</span>
-                                    </a>
-
-                                    <a class="mr-1" data-toggle="modal" data-target="#DialogIconedButton">
-<span class="iconedbox bg-warning" data-toggle="tooltip" title="حذف مراسم"
-      data-placement="bottom">
-    <ion-icon name="trash-outline" role="img" class="md hydrated"></ion-icon>
-</span>
-                                    </a>
-
-                                {% endif %}
-                            {% endif %}
-
-
-
-
-                            {#<a class="mr-1" data-toggle="modal" data-target="#DialogIconedButton">#}
-                            {# <ion-icon name="trash-outline"></ion-icon>#}
-                            {#</a>#}
-
-
-                            <!-- Dialog Iconed Block -->
-                            <div class="modal fade dialogbox" id="DialogIconedButton" data-backdrop="static"
-                                 tabindex="-1" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">حذف مراسم</h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            آیا مراسم را حذف می کنید؟
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="btn-list">
-                                                <a href="/deleteevent/{{ yad.id }}/{{ mar.id }}"
-                                                   class="btn btn-text-danger btn-block">
-                                                    <ion-icon name="trash-outline"></ion-icon>
-                                                    حذف
-                                                </a>
-
-
-                                                <a href="#" class="btn btn-text-primary btn-block" data-dismiss="modal">
-                                                    {#                                <ion-icon name="share-outline"></ion-icon>#}
-                                                    انصراف
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- * Dialog Iconed Block -->
-
-
-                            {#                            ++++++++++++++++++++++++++++++++++++++++++++#}
-
-
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-text">آدرس {{ mar.state }} - {{ mar.city }}</h4>
-                            <h5 class="card-text"> {{ mar.address }}</h5>
-                            {% for jdate in dates %}
-                                {% if forloop.counter0 == forloop.parentloop.counter0 %}
-                                    <p class="card-text">زمان: {{ mar.event_date |date:"D" }} {{ jdate }}</p>
-                                {% endif %}
-                            {% endfor %}
-                            <p class="card-text"> ساعات مراسم: از {{ mar.starttime|time:"H:i" }}
-                                تا {{ mar.finishtime|time:"H:i" }}</p>
-
-
+                        <div class="icon-box" data-toggle="tooltip" title="اشتراک گذاری"
+                             data-placement="bottom">
+                            <ion-icon name="share-social-outline" data-toggle="modal"
+                                      data-target="#actionSheetShareBox" role="img" class="md hydrated"
+                                      aria-label="arrow up outline"></ion-icon>
                         </div>
 
                     </div>
 
-                {% endfor %}
 
-
-
-                <br>
-
-
-                <!-- *salavat -->
-                <div class="row justify-content-center">
-                    <div class="detail-footer col-6 ">
-                        <div class="price">
-                            <div class="title"> هدیه صلوات</div>
-                        </div>
+                    <div class="container">
                         <div class="row">
-                            <a class="salavat-btn" data-pk='{{ yad.pk }}'
-                               href="{% url 'salavat' yad.pk %}">
-                                <button type="salavat-btn button" class="btn btn-secondary ml-1 mb-1"
-                                        data-pk='{{ yad.pk }}'
-                                        href="{% url 'salavat' yad.pk %}">
+                            <a href="/profile/{{ yad.owner.id }}"></a>
+
+
+                            <div class="text"><h5 class="subtext">
+                                <a href="/yadbood/state/{{ state_id }}/1">{{ yad.state }}</a> -
+                                <a href="/yadbood/city/{{ city_id }}/1">{{ yad.city }}</a>
+
+                            </h5></div>
+
+                        </div>
+
+                        <div class="row">
+                            <a href="/profile/{{ yad.owner.id }}">
+                                <div class="text"><h5 class="subtext"> ایجاد شده
+                                    توسط: {{ yad.owner.profile_name }}</h5></div>
+                            </a>
+                        </div>
+
+
+                    </div>
+
+
+                </li>
+
+
+            </ul>
+
+
+            {% for mar in marasem %}
+            {% if forloop.first %}
+
+            <div class="listview item">مراسم ها</div>
+            {% endif %}
+
+            <div class="card text-white bg-secondary mb-2">
+                <div class="card-header">{{ mar.title }}
+                    <!--    ({{ mar.event_date|timeuntil }} دیگر) -->
+
+                    {# ============================================#}
+
+                    {% if request.user.is_authenticated %}
+                    {% if event_permision %}
+
+                    <a href="/editevent/{{ yad.id }}/{{ mar.id }}">
+<span class="iconedbox bg-primary" data-toggle="tooltip" title="ویرایش مراسم"
+      data-placement="bottom">
+    <ion-icon name="create-outline" role="img" class="md hydrated"></ion-icon>
+</span>
+                    </a>
+
+                    <a class="mr-1" data-toggle="modal" data-target="#DialogIconedButton">
+<span class="iconedbox bg-warning" data-toggle="tooltip" title="حذف مراسم"
+      data-placement="bottom">
+    <ion-icon name="trash-outline" role="img" class="md hydrated"></ion-icon>
+</span>
+                    </a>
+
+                    {% endif %}
+                    {% endif %}
+
+
+                    {#<a class="mr-1" data-toggle="modal" data-target="#DialogIconedButton">#}
+                        {#
+                        <ion-icon name="trash-outline"></ion-icon>
+                        #}
+                        {#</a>#}
+
+
+                    <!-- Dialog Iconed Block -->
+                    <div class="modal fade dialogbox" id="DialogIconedButton" data-backdrop="static"
+                         tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">حذف مراسم</h5>
+                                </div>
+                                <div class="modal-body">
+                                    آیا مراسم را حذف می کنید؟
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="btn-list">
+                                        <a href="/deleteevent/{{ yad.id }}/{{ mar.id }}"
+                                           class="btn btn-text-danger btn-block">
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                            حذف
+                                        </a>
+
+
+                                        <a href="#" class="btn btn-text-primary btn-block" data-dismiss="modal">
+                                            {#
+                                            <ion-icon name="share-outline"></ion-icon>
+                                            #}
+                                            انصراف
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- * Dialog Iconed Block -->
+
+
+                    {# ++++++++++++++++++++++++++++++++++++++++++++#}
+
+
+                </div>
+                <div class="card-body">
+                    <h4 class="card-text">آدرس {{ mar.state }} - {{ mar.city }}</h4>
+                    <h5 class="card-text"> {{ mar.address }}</h5>
+                    {% for jdate in dates %}
+                    {% if forloop.counter0 == forloop.parentloop.counter0 %}
+                    <p class="card-text">زمان: {{ mar.event_date |date:"D" }} {{ jdate }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <p class="card-text"> ساعات مراسم: از {{ mar.starttime|time:"H:i" }}
+                        تا {{ mar.finishtime|time:"H:i" }}</p>
+
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+
+            <br>
+
+
+            <!-- *salavat -->
+            <div class="row justify-content-center">
+                <div class="detail-footer col-6 ">
+                    <div class="price">
+                        <div class="title"> هدیه صلوات</div>
+                    </div>
+                    <div class="row">
+                        <a class="salavat-btn" data-pk='{{ yad.pk }}'
+                           href="{% url 'salavat' yad.pk %}">
+                            <button type="salavat-btn button" class="btn btn-secondary ml-1 mb-1"
+                                    data-pk='{{ yad.pk }}'
+                                    href="{% url 'salavat' yad.pk %}">
 
 
 
                                                 <span id="salavat-{{ yad.pk }}" class="text-light">
                                                       {{ yad.salavat_count|intcomma }}
                                                 </span>
-                                </button>
-                            </a>
+                            </button>
+                        </a>
 
-                        </div>
                     </div>
                 </div>
-                <!-- salavat *-->
+            </div>
+            <!-- salavat *-->
 
 
-
-<!-- *100salavat -->
-                <div class="row justify-content-center">
-                    <div class="detail-footer col-6 ">
-                        <div class="price">
-                            <div class="title"> هدیه 100 صلوات</div>
-                        </div>
-                        <div class="row">
-                            <a class="100salavat-btn" data-pk='{{ yad.pk }}'
-                               href="{% url '100salavat' yad.pk %}">
-                                <button type="100salavat-btn button" class="btn btn-secondary ml-1 mb-1"
-                                        data-pk='{{ yad.pk }}'
-                                        href="{% url '100salavat' yad.pk %}">
+            <!-- *100salavat -->
+            <div class="row justify-content-center">
+                <div class="detail-footer col-6 ">
+                    <div class="price">
+                        <div class="title"> هدیه 100 صلوات</div>
+                    </div>
+                    <div class="row">
+                        <a class="100salavat-btn" data-pk='{{ yad.pk }}'
+                           href="{% url '100salavat' yad.pk %}">
+                            <button type="100salavat-btn button" class="btn btn-secondary ml-1 mb-1"
+                                    data-pk='{{ yad.pk }}'
+                                    href="{% url '100salavat' yad.pk %}">
 
 
 
                                                 <span id="100salavat-{{ yad.pk }}" class="text-light">
                                                       {{yad.sad_salavat|intcomma}}
                                                  </span>
-                                </button>
-                            </a>
+                            </button>
+                        </a>
 
-                        </div>
                     </div>
                 </div>
-                <!-- 100salavat *-->
+            </div>
+            <!-- 100salavat *-->
 
 
-
-
-
-
-
-                <!-- *fatehe -->
-                <div class="row justify-content-center">
-                    <div class="detail-footer col-6 ">
-                        <div class="price">
-                            <div class="title">
-                                هدیه فاتحه
-                            </div>
+            <!-- *fatehe -->
+            <div class="row justify-content-center">
+                <div class="detail-footer col-6 ">
+                    <div class="price">
+                        <div class="title">
+                            هدیه فاتحه
                         </div>
-                        <div class="row">
-                            <a class="fatehe-btn" data-pk='{{ yad.pk }}'
-                               href="{% url 'fatehe' yad.pk %}">
-                                <button type="button" class="btn btn-secondary ml-1 mb-1">
+                    </div>
+                    <div class="row">
+                        <a class="fatehe-btn" data-pk='{{ yad.pk }}'
+                           href="{% url 'fatehe' yad.pk %}">
+                            <button type="button" class="btn btn-secondary ml-1 mb-1">
 
                                                 <span id="fatehe-{{ yad.pk }}" class="text-light">
                                                       {{ yad.fatehe_count|intcomma }}
                                                  </span>
-                                </button>
-                            </a>
+                            </button>
+                        </a>
 
-                        </div>
                     </div>
                 </div>
-                <!-- fatehe *-->
+            </div>
+            <!-- fatehe *-->
 
 
             <!-- *fatehe -->
-                <div class="row justify-content-center">
-                    <div class="detail-footer col-6 ">
-                        <div class="price">
-                            <div class="title">
-                                صفحات قرآن خوانده شده
-                            </div>
+            <div class="row justify-content-center">
+                <div class="detail-footer col-6 ">
+                    <div class="price">
+                        <div class="title">
+                            صفحات قرآن خوانده شده
                         </div>
-                        <div class="row">
-                            <a>
-                               <button type="" class="btn btn-outline-primary ml-1 mb-1 ">
+                    </div>
+                    <div class="row">
+                        <a>
+                            <button type="" class="btn btn-outline-primary ml-1 mb-1 ">
 
                                                 <span id="quran_count-{{ yad.pk }}" class="text-primary">
                                                       {{ yad.quran_count|intcomma }}
                                                  </span>
-                                </button>
-                            </a>
+                            </button>
+                        </a>
 
-                        </div>
                     </div>
                 </div>
-                <!-- fatehe *-->
-
-
-
-
-
-
-
-
-                <!-- *joz -->
-                <!-- Dialog Block Button -->
-                <div class="row justify-content-center">
-                    <div class="wide-block pt-2 pb-2">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                data-target="#DialogBlockButton">
-
-                            {% if is_joz_available %}
-                                جزء {{ current_joz_no }} قرآن کریم را قرائت می کنم
-                            {% else %}
-                                قرائت یک جزء قرآن کریم
-                            {% endif %}
-
-
-                        </button>
-                    </div>
-                </div>
-
-
-                <div class="modal fade dialogbox" id="DialogBlockButton" data-backdrop="static" tabindex="-1"
-                     role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">قرائت یک جزء</h5>
-                            </div>
-                            <div class="modal-body">
-                                {% if is_joz_available %}
-                                    جزء {{ current_joz_no }} قرآن کریم را قرائت می کنم
-                                {% else %}
-                                    برای ختم این دوره از قرآن کریم، جزء کامل باقی نمانده است
-                                {% endif %}
-                            </div>
-                            <div class="modal-footer">
-                                <div class="btn-list">
-                                    {% if is_joz_available %}
-                                        <a href="{% url 'joz' yad.id %}"
-                                           class="btn btn-text-primary btn-block">تائید</a>
-                                        <a href="#" class="btn btn-text-secondary btn-block"
-                                           data-dismiss="modal">انصراف</a>
-                                    {% else %}
-                                        <a href="#" class="btn btn-text-secondary btn-block" data-dismiss="modal">متوجه
-                                            شدم</a>
-                                    {% endif %}
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- * Dialog Block Button -->
-
-                <!-- joz *-->
-
-
-                <!-- *quran page -->
-                <div class="row justify-content-center">
-                    <h1 class="title text-justify">هدیه قرائت صفحه
-                        <span id="page-{{ yad.pk }}" class="text-primary">{{ quran_page.page }}</span>
-                        قرآن کریم
-                    </h1>
-                </div>
-                <!-- quran page *-->
-
-
             </div>
+            <!-- fatehe *-->
+
+
+            <!-- *joz -->
+            <!-- Dialog Block Button -->
+            <div class="row justify-content-center">
+                <div class="wide-block pt-2 pb-2">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal"
+                            data-target="#DialogBlockButton">
+
+                        {% if is_joz_available %}
+                        جزء {{ current_joz_no }} قرآن کریم را قرائت می کنم
+                        {% else %}
+                        قرائت یک جزء قرآن کریم
+                        {% endif %}
+
+
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="modal fade dialogbox" id="DialogBlockButton" data-backdrop="static" tabindex="-1"
+                 role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">قرائت یک جزء</h5>
+                        </div>
+                        <div class="modal-body">
+                            {% if is_joz_available %}
+                            جزء {{ current_joz_no }} قرآن کریم را قرائت می کنم
+                            {% else %}
+                            برای ختم این دوره از قرآن کریم، جزء کامل باقی نمانده است
+                            {% endif %}
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn-list">
+                                {% if is_joz_available %}
+                                <a href="{% url 'joz' yad.id %}"
+                                   class="btn btn-text-primary btn-block">تائید</a>
+                                <a href="#" class="btn btn-text-secondary btn-block"
+                                   data-dismiss="modal">انصراف</a>
+                                {% else %}
+                                <a href="#" class="btn btn-text-secondary btn-block" data-dismiss="modal">متوجه
+                                    شدم</a>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- * Dialog Block Button -->
+
+            <!-- joz *-->
+
+
+            <!-- *quran page -->
+            <div class="row justify-content-center">
+                <h1 class="title text-justify">هدیه قرائت صفحه
+                    <span id="page-{{ yad.pk }}" class="text-primary">{{ quran_page.page }}</span>
+                    قرآن کریم
+                </h1>
+            </div>
+            <!-- quran page *-->
+
+
+        </div>
+    </div>
+
+
+    <div class="overflow-auto" style="max-width: 100%; max-height: 400px;">
+        <div id="sadjdeh-{{ yad.pk }}" role="alert">
+            <h4 id="text1-{{ yad.pk }}"></h4>
         </div>
 
 
-
-
-
-
+        {% if sad %}
 
 
         <div class="overflow-auto" style="max-width: 100%; max-height: 400px;">
-             <div id="sadjdeh-{{ yad.pk }}" role="alert" >
-                    <h4 id="text1-{{ yad.pk }}"></h4>
- </div>
+            <div role="alert" class="alert alert-info mb-1 ju">
+                <h4> این صفحه سجده واجب دارد</h4>
+            </div>
 
 
-{% if sad %}
-
-
-        <div class="overflow-auto" style="max-width: 100%; max-height: 400px;">
-             <div role="alert" class="alert alert-info mb-1 ju" >
-                    <h4> این صفحه سجده واجب دارد</h4>
- </div>
-
-
-{% endif %}
-
-
-
+            {% endif %}
 
 
             <img class="imaged w-100 " id="image-{{ yad.pk }}" alt="صفحه قرآن" src="{{ quran_page.image.url }}">
@@ -429,33 +404,25 @@
 
         <!-- quran sound *-->
 
-            <div class="container">
+        <div class="container">
             <div class="row justify-content-center">
 
 
-                   <audio id="sound" controls>
-     <source src="{{ quran_page.sound.url }}" type="audio/wav">
-   </audio>
+                <audio id="sound" controls>
+                    <source src="{{ quran_page.sound.url }}" type="audio/wav">
+                </audio>
 
-{#                <audio src="{{ quran_page.sound.url }}" controls>#}
-{#               </audio>#}
-
-
-
-
-
-
-
+                {#
+                <audio src="{{ quran_page.sound.url }}" controls>#}
+                    {#
+                </audio>
+                #}
 
 
             </div>
 
 
         </div>
-
-
-
-
 
 
         <!-- description -->
@@ -474,60 +441,46 @@
     <!-- * App Capsule -->
 
 
-
-
-
-
-
-
-
-
-
-
-
     {% if request.user.is_authenticated %}
-        <div class="fab-button animate bottom-right dropdown">
-            <a href="#" class="fab" data-toggle="dropdown" aria-expanded="false">
-                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+    <div class="fab-button animate bottom-right dropdown">
+        <a href="#" class="fab" data-toggle="dropdown" aria-expanded="false">
+            <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+        </a>
+        <div class="dropdown-menu" style="">
+            <a class="dropdown-item" href="/create">
+                <ion-icon name="document-text-outline" role="img" class="md hydrated"
+                          aria-label="musical notes outline"></ion-icon>
+                <p>یادبود جدید</p>
             </a>
-            <div class="dropdown-menu" style="">
-                <a class="dropdown-item" href="/create">
-                    <ion-icon name="document-text-outline" role="img" class="md hydrated"
-                              aria-label="musical notes outline"></ion-icon>
-                    <p>یادبود جدید</p>
-                </a>
 
 
-
-                {% if event_permision %}
-
-
-                    <a class="dropdown-item bg-danger" data-toggle="modal" data-target="#DialogIconedButtonInline">
-                        <ion-icon name="trash-outline" role="img" class="md hydrated"
-                                  aria-label="musical notes outline"></ion-icon>
-                        <p>حذف یادبود</p>
-                    </a>
-
-                    <a class="dropdown-item" href="/newevent/{{ yad.id }}">
-                        <ion-icon name="alarm-outline" role="img" class="md hydrated"
-                                  aria-label="musical notes outline"></ion-icon>
-                        <p>مراسم جدید</p>
-                    </a>
+            {% if event_permision %}
 
 
+            <a class="dropdown-item bg-danger" data-toggle="modal" data-target="#DialogIconedButtonInline">
+                <ion-icon name="trash-outline" role="img" class="md hydrated"
+                          aria-label="musical notes outline"></ion-icon>
+                <p>حذف یادبود</p>
+            </a>
 
-                    <a class="dropdown-item" href="/edit/{{ yad.id }}">
-                        <ion-icon name="create-outline" role="img" class="md hydrated"
-                                  aria-label="musical notes outline"></ion-icon>
-                        <p>ویرایش یادبود</p>
-                    </a>
-                {% endif %}
+            <a class="dropdown-item" href="/newevent/{{ yad.id }}">
+                <ion-icon name="alarm-outline" role="img" class="md hydrated"
+                          aria-label="musical notes outline"></ion-icon>
+                <p>مراسم جدید</p>
+            </a>
 
 
-            </div>
+            <a class="dropdown-item" href="/edit/{{ yad.id }}">
+                <ion-icon name="create-outline" role="img" class="md hydrated"
+                          aria-label="musical notes outline"></ion-icon>
+                <p>ویرایش یادبود</p>
+            </a>
+            {% endif %}
+
+
         </div>
+    </div>
     {% endif %}
-
 
 
     <!-- Dialog Iconed Inline -->
@@ -581,350 +534,351 @@
 
                             {#SMS android#}
                             <div class="col-2 ">
-                                {#                            <div class="col-2 android-detection">#}
-                                <a href="{{ smsandroid }}" class="btn btn-icon btn-twitter" data-dismiss="modal">
-                                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                                </a>
-                            </div>
+                                {#
+                                <div class="col-2 android-detection">#}
+                                    <a href="{{ smsandroid }}" class="btn btn-icon btn-twitter" data-dismiss="modal">
+                                        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                                    </a>
+                                </div>
 
-                            {#SMS ios#}
-                            <div class="col-2 ios-detection">
-                                <a href="{{ smsforios }}" class="btn btn-icon btn-twitter" data-dismiss="modal">
-                                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                                </a>
-                            </div>
-
-
-                            {# telegram#}
-                            <div class="col-2">
-                                <a href="{{ telegram }}" class="btn btn-icon btn-primary" data-dismiss="modal">
-                                    <ion-icon name="paper-plane-outline"></ion-icon>
-                                </a>
-                            </div>
+                                {#SMS ios#}
+                                <div class="col-2 ios-detection">
+                                    <a href="{{ smsforios }}" class="btn btn-icon btn-twitter" data-dismiss="modal">
+                                        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                                    </a>
+                                </div>
 
 
-                            {% comment %}                            <div class="col-2">
-                                <a href="#" class="btn btn-icon btn-instagram" data-dismiss="modal">
-                                    <ion-icon name="logo-instagram"></ion-icon>
-                                </a>
-                            </div>{% endcomment %}
+                                {# telegram#}
+                                <div class="col-2">
+                                    <a href="{{ telegram }}" class="btn btn-icon btn-primary" data-dismiss="modal">
+                                        <ion-icon name="paper-plane-outline"></ion-icon>
+                                    </a>
+                                </div>
 
 
-                            {#whatsapp#}
+                                {% comment %}
+                                <div class="col-2">
+                                    <a href="#" class="btn btn-icon btn-instagram" data-dismiss="modal">
+                                        <ion-icon name="logo-instagram"></ion-icon>
+                                    </a>
+                                </div>
+                                {% endcomment %}
 
-                            <div class="col-2">
-                                <a href="{{ whatsapp }}"
-                                        {#                                <a href="whatsapp://send?text=http://yadeo.ir/yadbood/{{ yad.id }}"#}
-                                   class="btn btn-icon btn-whatsapp"
-                                   target="_blank">
+
+                                {#whatsapp#}
+
+                                <div class="col-2">
+                                    <a href="{{ whatsapp }}"
+                                       {# <a href="whatsapp://send?text=http://yadeo.ir/yadbood/{{ yad.id }}" #}
+                                             class="btn btn-icon btn-whatsapp"
+                                             target="_blank">
                                     <ion-icon name="logo-whatsapp"></ion-icon>
                                 </a>
+                                </div>
+
+
+                                {# eitaa#}
+                                <div class="col-2">
+                                    <a href="{{ eitaa }}"
+                                       class="btn btn-icon btn-warning" target="_blank">
+                                        <img src="https://eitaa.com/assets/images/ico/icon50.png" alt="ایتا"
+                                             class="image btn-icon">
+                                    </a>
+                                    </a>
+                                </div>
+
+
+                                {#bale#}
+                                <div class="col-2">
+                                    <a href="{{ bale }}"
+                                       class="btn btn-icon " target="_blank">
+                                        <!--                                    <img src="https://bale.ai/img/l.svg" class="image btn-icon">-->
+                                        <img src="{% static 'img/icon/bale.png' %}" class="image btn-icon">
+                                    </a>
+                                </div>
+
+
+                                {# sorosh#}
+                                <div class="col-2">
+                                    <a href="{{ sorosh }}"
+                                       class="btn btn-icon " target="_blank">
+                                        <!--                                    <img src="https://hi.sapp.ir/images/logo.png" class="image btn-icon">-->
+                                        <img src="{% static 'img/icon/Soroush.png' %}" class="image btn-icon">
+
+                                    </a>
+                                </div>
+
+
                             </div>
-
-
-                            {# eitaa#}
-                            <div class="col-2">
-                                <a href="{{ eitaa }}"
-                                   class="btn btn-icon btn-warning" target="_blank">
-                                    <img src="https://eitaa.com/assets/images/ico/icon50.png" alt="ایتا" class="image btn-icon">
-                                </a>
-                                </a>
-                            </div>
-
-
-                            {#bale#}
-                            <div class="col-2">
-                                <a href="{{ bale }}"
-                                   class="btn btn-icon " target="_blank">
-<!--                                    <img src="https://bale.ai/img/l.svg" class="image btn-icon">-->
-                                    <img src="{% static 'img/icon/192x192.png' %}" class="image btn-icon">
-                                </a>
-                            </div>
-
-
-                            {#  sorosh#}
-                            <div class="col-2">
-                                <a href="{{ sorosh }}"
-                                   class="btn btn-icon " target="_blank">
-                                    <img src="https://hi.sapp.ir/images/logo.png" class="image btn-icon">
-                                </a>
-                            </div>
-
-
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- * Share Action Sheet -->
+        <!-- * Share Action Sheet -->
 
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+        <script>
+            $(".salavat-btn").click(function (e) {
+                    e.preventDefault()
+                    var id = $(this).attr("data-pk")
+                    var yad = "/yadbod/" + id
+                    var url = $(this).attr("href")
 
-
-
-
-
-
-
-
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-        $(".salavat-btn").click(function (e) {
-                e.preventDefault()
-                var id = $(this).attr("data-pk")
-                var yad = "/yadbod/" + id
-                var url = $(this).attr("href")
-
-                $.ajax({
-                        url: url,
-                        success: function (success) {
-                            {#console.log("success")#}
-                            $.ajax(
+                    $.ajax({
+                            url: url,
+                            success: function (success) {
                                 {
-                                    url: yad,
-                                    success: function (s) {
-                                        {#console.log("s")#}
-                                        $('#salavat-' + id).html(s.salavat_count)
-                                        $('#100salavat-' + id).html(Math.floor(s.salavat_count/ 100))
-                                        console.log("salavat-" + id)
-                                        console.log(s.salavat_count)
-                                    },
-                                    error: function (e) {
-                                        console.log("e")
-                                    },
+                                    #console.log("success")
+                                #
                                 }
-                            )
-                        },
-                        error: function (error) {
-                            console.log("error 1")
-                        }
-
-                    }
-                )
-
-            }
-        )
-
-
-$(".100salavat-btn").click(function (e) {
-                e.preventDefault()
-                var id = $(this).attr("data-pk")
-                var yad = "/yadbod/" + id
-                var url = $(this).attr("href")
-
-                $.ajax({
-                        url: url,
-                        success: function (success) {
-                            {#console.log("success")#}
-                            $.ajax(
-                                {
-                                    url: yad,
-                                    success: function (s) {
-                                        {#console.log("s")#}
-                                        // $('#100salavat-' + id).html(s.sad_salavat)
-                                        $('#salavat-' + id).html(s.salavat_count)
-                                        
-                                
-                                        
-                                        
-                                        $('#100salavat-' + id).html(Math.floor(s.salavat_count/ 100))
-                                        console.log("100salavat-" + id)
-                                        console.log(s.salavat_count)
-                                    },
-                                    error: function (e) {
-                                        console.log("e")
-                                    },
-                                }
-                            )
-                        },
-                        error: function (error) {
-                            console.log("error 1")
-                        }
-
-                    }
-                )
-
-            }
-        )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {#add fatehe#}
-        $(".fatehe-btn").click(function (e) {
-                e.preventDefault()
-                var id = $(this).attr("data-pk")
-                var yad = "/yadbod/" + id
-                var url = $(this).attr("href")
-
-                $.ajax({
-                        url: url,
-                        success: function (success) {
-                            {#console.log("success")#}
-                            $.ajax(
-                                {
-                                    url: yad,
-                                    success: function (s) {
-                                        {#console.log("s")#}
-                                        $('#fatehe-' + id).html(s.fatehe_count)
-                                        console.log("fatehe-" + id)
-                                        console.log(s.fatehe_count)
-
-
-                                    },
-                                    error: function (e) {
-                                        console.log("e")
-                                    },
-
-
-                                }
-                            )
-
-
-                        },
-                        error: function (error) {
-                            console.log("error 2")
-
-                        }
-
-                    }
-                )
-
-            }
-        )
-
-
-        {#add page#}
-        $(".page-btn").click(function (e) {
-                e.preventDefault()
-                var id = $(this).attr("data-pk")
-                var yad = "/yadbod/" + id
-                var url = $(this).attr("href")
-
-
-                $.ajax({
-                        url: url,
-                        success: function (success) {
-                            $.ajax(
-                                {
-                                    url: yad,
-                                    success: function (s) {
-                                        $('#sound').stop()
-                                        console.log(s)
-                                        $('#page-' + id).html(s.page)
-                                        {#$('#image-' + id).html(s.image)#}
-                                        $('#image-' + id).attr('src', s.image)
-                                        $('#sound').attr('src', s.sound)
-                                        $('#sadjdeh-' + id).attr('class', s.sadjdeh)
-                                        $('#text1-' + id).html(s.text1)
-                                        $('#quran_count-' + id).html(s.quran_count)
-
-                                        {#console.log("image-" + id)#}
-                                        console.log(s.image)
-                                        console.log(s.sound)
-
-
-                                    },
-                                    error: function (e) {
-                                        console.log("e")
-                                    },
-
-
-                                }
-                            )
-
-
-                        },
-                        error: function (error) {
-                            console.log("error 3")
-
-                        }
-
-                    }
-                )
-
-            }
-        )
-
-
-
-
-
-
-        {#reyad#}
-        $(".reyad-btn").click(function (e) {
-            e.preventDefault()
-            var id = $(this).attr("data-pk")
-            var yad = "/yadbod/" + id
-            var url = $(this).attr("href")
-
-
-            $.ajax({
-                url: url,
-                success: function (success) {
-                    $.ajax(
-                        {
-                            url: yad,
-                            success: function (s) {
-                                console.log(s)
-                                $('#reyad-' + id).attr('class', s.icon)
-
+                                $.ajax(
+                                    {
+                                        url: yad,
+                                        success: function (s) {
+                                            {
+                                                #console.log("s")
+                                            #
+                                            }
+                                            $('#salavat-' + id).html(s.salavat_count)
+                                            $('#100salavat-' + id).html(Math.floor(s.salavat_count / 100))
+                                            console.log("salavat-" + id)
+                                            console.log(s.salavat_count)
+                                        },
+                                        error: function (e) {
+                                            console.log("e")
+                                        },
+                                    }
+                                )
                             },
-                            error: function (e) {
-                                console.log("e")
-                            },
-                        })
-                },
-                error: function (error) {
-                    console.log("error 3")
+                            error: function (error) {
+                                console.log("error 1")
+                            }
+
+                        }
+                    )
 
                 }
+            )
+
+
+            $(".100salavat-btn").click(function (e) {
+                    e.preventDefault()
+                    var id = $(this).attr("data-pk")
+                    var yad = "/yadbod/" + id
+                    var url = $(this).attr("href")
+
+                    $.ajax({
+                            url: url,
+                            success: function (success) {
+                                {
+                                    #console.log("success")
+                                #
+                                }
+                                $.ajax(
+                                    {
+                                        url: yad,
+                                        success: function (s) {
+                                            {
+                                                #console.log("s")
+                                            #
+                                            }
+                                            // $('#100salavat-' + id).html(s.sad_salavat)
+                                            $('#salavat-' + id).html(s.salavat_count)
+
+
+                                            $('#100salavat-' + id).html(Math.floor(s.salavat_count / 100))
+                                            console.log("100salavat-" + id)
+                                            console.log(s.salavat_count)
+                                        },
+                                        error: function (e) {
+                                            console.log("e")
+                                        },
+                                    }
+                                )
+                            },
+                            error: function (error) {
+                                console.log("error 1")
+                            }
+
+                        }
+                    )
+
+                }
+            )
+
+
+            {
+                #add
+                fatehe
+            #
+            }
+            $(".fatehe-btn").click(function (e) {
+                    e.preventDefault()
+                    var id = $(this).attr("data-pk")
+                    var yad = "/yadbod/" + id
+                    var url = $(this).attr("href")
+
+                    $.ajax({
+                            url: url,
+                            success: function (success) {
+                                {
+                                    #console.log("success")
+                                #
+                                }
+                                $.ajax(
+                                    {
+                                        url: yad,
+                                        success: function (s) {
+                                            {
+                                                #console.log("s")
+                                            #
+                                            }
+                                            $('#fatehe-' + id).html(s.fatehe_count)
+                                            console.log("fatehe-" + id)
+                                            console.log(s.fatehe_count)
+
+
+                                        },
+                                        error: function (e) {
+                                            console.log("e")
+                                        },
+
+
+                                    }
+                                )
+
+
+                            },
+                            error: function (error) {
+                                console.log("error 2")
+
+                            }
+
+                        }
+                    )
+
+                }
+            )
+
+
+            {
+                #add
+                page
+            #
+            }
+            $(".page-btn").click(function (e) {
+                    e.preventDefault()
+                    var id = $(this).attr("data-pk")
+                    var yad = "/yadbod/" + id
+                    var url = $(this).attr("href")
+
+
+                    $.ajax({
+                            url: url,
+                            success: function (success) {
+                                $.ajax(
+                                    {
+                                        url: yad,
+                                        success: function (s) {
+                                            $('#sound').stop()
+                                            console.log(s)
+                                            $('#page-' + id).html(s.page)
+                                            {
+                                                #$('#image-' + id).html(s.image)
+                                            #
+                                            }
+                                            $('#image-' + id).attr('src', s.image)
+                                            $('#sound').attr('src', s.sound)
+                                            $('#sadjdeh-' + id).attr('class', s.sadjdeh)
+                                            $('#text1-' + id).html(s.text1)
+                                            $('#quran_count-' + id).html(s.quran_count)
+
+                                            {
+                                                #console.log("image-" + id)
+                                            #
+                                            }
+                                            console.log(s.image)
+                                            console.log(s.sound)
+
+
+                                        },
+                                        error: function (e) {
+                                            console.log("e")
+                                        },
+
+
+                                    }
+                                )
+
+
+                            },
+                            error: function (error) {
+                                console.log("error 3")
+
+                            }
+
+                        }
+                    )
+
+                }
+            )
+
+
+            {
+                #reyad
+            #
+            }
+            $(".reyad-btn").click(function (e) {
+                e.preventDefault()
+                var id = $(this).attr("data-pk")
+                var yad = "/yadbod/" + id
+                var url = $(this).attr("href")
+
+
+                $.ajax({
+                    url: url,
+                    success: function (success) {
+                        $.ajax(
+                            {
+                                url: yad,
+                                success: function (s) {
+                                    console.log(s)
+                                    $('#reyad-' + id).attr('class', s.icon)
+
+                                },
+                                error: function (e) {
+                                    console.log("e")
+                                },
+                            })
+                    },
+                    error: function (error) {
+                        console.log("error 3")
+
+                    }
+                })
             })
-        })
 
-    </script>
+        </script>
 
-<script>
-var id = $(this).attr("data-pk");
-var vid = document.getElementById("sound");
-var pagebutton= document.getElementById("ppp");
-vid.onended = function() {
-    pagebutton.click();
-    // $('#sound').attr('controls',controls);
-    // $('#sound').attr('autoplay', autoplay);
-    
-};
-</script>
+        <script>
+            var id = $(this).attr("data-pk");
+            var vid = document.getElementById("sound");
+            var pagebutton = document.getElementById("ppp");
+            vid.onended = function () {
+                pagebutton.click();
+                // $('#sound').attr('controls',controls);
+                // $('#sound').attr('autoplay', autoplay);
 
+            };
+        </script>
 
 
-
-
-
-
-{% endblock %}
+        {% endblock %}
 
 
 
