@@ -375,7 +375,7 @@ def EditYad(request, *args, **kwargs):
 
 
 
-    print(yadbood.title)
+    # print(yadbood.title)
 
     edit_form = CreateYadForm(request.POST or None, request.FILES or None,
                                   initial = {

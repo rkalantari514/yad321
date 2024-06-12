@@ -69,7 +69,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="text"><h5 class="subtext"> تاریخ
-                                وفات: {{ yad.death_date|to_jalali:'%Y/%m/%d' }}</h5></div>
+                                وفات: {{ yad.death_date|to_jalali:'%Y/%m/%d' }}</h5>
+                            <h5 class="subtext">گذشته: {{ yad.death_date| timesince }}</h5>
+                            </div>
 
                         </div>
                     </div>
