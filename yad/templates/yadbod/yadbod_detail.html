@@ -464,29 +464,20 @@
             <div class="wide-block pt-2 pb-2">
                 {{ yad.description }}
             </div>
-        </div>
 
 
         <!-- description -->
 
+        </div>
 
     </div>
     <!-- * App Capsule -->
 
 
 
-
-
-
-
-
-
-
-
-
-
-    {% if request.user.is_authenticated %}
-        <div class="fab-button animate bottom-right dropdown">
+{% if request.user.is_authenticated %}
+{#        <div class="fab-button animate bottom-right dropdown">#}
+        <div class="fab-button animate right dropdown">
             <a href="#" class="fab" data-toggle="dropdown" aria-expanded="false">
                 <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
             </a>
@@ -527,6 +518,15 @@
             </div>
         </div>
     {% endif %}
+
+
+
+
+
+
+
+
+
 
 
 
