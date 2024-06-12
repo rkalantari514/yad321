@@ -217,7 +217,15 @@ def Yad_detail_2(request, *args, **kwargs):
 
     print('t1')
     print(y2)
+
+
+
     salgard=datetime.datetime(y2, m1, d1)
+
+    print(salgard)
+
+    if salgard < now1:
+        salgard = datetime.datetime(y2+1, m1, d1)
 
     print(salgard)
 
