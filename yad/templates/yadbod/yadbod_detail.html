@@ -3,7 +3,7 @@
 {% load humanize %}
 {% load render_partial %}
 {% block content %}
-{% load jalali_tags %}
+    {% load jalali_tags %}
 
 
 
@@ -66,11 +66,12 @@
                         </div>
 
                     </div>
-<div class="container">
-                    <div class="row">
-                        <div class="text"><h5 class="subtext"> تاریخ وفات: {{ yad.death_date|to_jalali:'%Y/%m/%d' }}</h5></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="text"><h5 class="subtext"> تاریخ
+                                وفات: {{ yad.death_date|to_jalali:'%Y/%m/%d' }}</h5></div>
 
-                    </div>
+                        </div>
                     </div>
 
 
