@@ -71,6 +71,7 @@
                             <div class="text"><h5 class="subtext"> تاریخ
                                 وفات: {{ yad.death_date|to_jalali:'%Y/%m/%d' }}</h5>
                             <h5 class="subtext">گذشته: {{ yad.death_date| timesince }}</h5>
+                            <h5 class="subtext">مانده تا سالگرد: {{ salgard | timeuntil:now1 }}</h5>
                             </div>
 
                         </div>

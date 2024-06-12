@@ -1,5 +1,6 @@
 #init 1
 from datetime import datetime
+import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -203,6 +204,22 @@ def Yad_detail_2(request, *args, **kwargs):
         sadjdeh="alert alert-info mb-1 ju"
         text1="این صفحه سجده واجب دارد!"
         sad=True
+    y1=yadbood.death_date.year
+    m1=yadbood.death_date.month
+    d1=yadbood.death_date.day
+
+    print('t1')
+    print(y1)
+    print(m1)
+    print(d1)
+    now1=datetime.datetime.now()
+    y2=datetime.datetime.now().year
+
+    print('t1')
+    print(y2)
+    salgard=datetime.datetime(y2, m1, d1)
+
+    print(salgard)
 
 
     # s100=yadbood.salavat_count/100
@@ -233,7 +250,9 @@ def Yad_detail_2(request, *args, **kwargs):
         'have_sound':have_sond,
         'sadjdeh':sadjdeh,
         'text1':text1,
-        'sad':sad
+        'sad':sad,
+        'salgard':salgard,
+        'now1':now1,
 
 
 
