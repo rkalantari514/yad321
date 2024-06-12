@@ -245,8 +245,6 @@ def Yad_detail_2(request, *args, **kwargs):
         'salgard':salgard,
         'now1':now1,
 
-
-
     }
 
     return render(request, 'yadbod/yadbod_detail.html', context)
