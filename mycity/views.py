@@ -13,7 +13,7 @@ def for_city_tab(request, *args, **kwargs):
         st_yadbood=Yad.objects.filter(state=st).count()
         if st_yadbood > 0 :
             stateno.append((st_name,st_yadbood,st.id))
-    print(stateno)
+    # print(stateno)
 
 
 
