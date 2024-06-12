@@ -208,28 +208,11 @@ def Yad_detail_2(request, *args, **kwargs):
     m1=yadbood.death_date.month
     d1=yadbood.death_date.day
 
-    print('t1')
-    print(y1)
-    print(m1)
-    print(d1)
     now1=datetime.datetime.now()
     y2=datetime.datetime.now().year
-
-    print('t1')
-    print(y2)
-
-
-
     salgard=datetime.datetime(y2, m1, d1)
-
-    print(salgard)
-
     if salgard < now1:
         salgard = datetime.datetime(y2+1, m1, d1)
-
-    print(salgard)
-
-
     # s100=yadbood.salavat_count/100
     # sal100=math.trunc(s100)
     context = {
