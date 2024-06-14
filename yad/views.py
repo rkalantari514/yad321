@@ -382,6 +382,8 @@ def EditYad(request, *args, **kwargs):
         raise Http404('کاربر مورد نظر یافت نشد')
 
     adm=True
+
+
     try:
         if user.mobile == '09151006447':
             adm=False
