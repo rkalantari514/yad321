@@ -383,7 +383,7 @@ def EditYad(request, *args, **kwargs):
 
     adm=True
     try:
-        if user.mobile != '09151006447':
+        if user.mobile == '09151006447':
             adm=False
     except:
         pass
@@ -453,7 +453,7 @@ def DeleteYad(request, *args, **kwargs):
 
     adm = True
     try:
-        if user.mobile != '09151006447':
+        if user.mobile == '09151006447':
             adm = False
     except:
         pass
