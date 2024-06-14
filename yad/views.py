@@ -381,7 +381,14 @@ def EditYad(request, *args, **kwargs):
     if user is None:
         raise Http404('کاربر مورد نظر یافت نشد')
 
-    if user != owner and user.mobile != '09151006447':
+    adm=True
+    try:
+        if user.mobile != '09151006447':
+            adm=False
+    except:
+        pass
+
+    if user != owner and adm:
         raise Http404('شما این دسترسی را ندارید')
 
 
@@ -444,7 +451,14 @@ def DeleteYad(request, *args, **kwargs):
     if user is None:
         raise Http404('کاربر مورد نظر یافت نشد')
 
-    if user != owner and user.mobile != '09151006447':
+    adm = True
+    try:
+        if user.mobile != '09151006447':
+            adm = False
+    except:
+        pass
+
+    if user != owner and adm:
         raise Http404('شما این دسترسی را ندارید')
 
     if user == owner:
