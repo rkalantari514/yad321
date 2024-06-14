@@ -135,7 +135,11 @@ def Yad_detail_2(request, *args, **kwargs):
         is_reyad = False
 
     reyad_permision = request.user != yadbood.owner
-    event_permision = request.user == yadbood.owner or user.mobile == '09151006447'
+    event_permision = False
+    try:
+        event_permision = request.user == yadbood.owner or user.mobile == '09151006447'
+    except:
+        pass
     title = f"یادبود مجازی {yadbood.title} {yadbood.name} {yadbood.family}"
 
     marasem = Marasem.objects.filter(yad=yadbood)
