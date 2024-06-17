@@ -24,7 +24,7 @@
                 <a href="yadbood/total_random/1" class="item">
                     <strong>{{ quran_set.total_yadbood|intcomma }}</strong>یادبودها
                 </a>
-                
+
                 <a href="/yadbood/total_salavat/1" class="item">
                     <strong>{{ quran_set.total_salavat|intcomma }}</strong>صلوات
                 </a>
@@ -83,7 +83,7 @@
                             <ion-icon name="location-outline"></ion-icon>
                         </a>
                     </li>
-                   
+
                 </ul>
             </div>
         </div>
@@ -106,7 +106,8 @@
                             {% for yad in object_list %}
                                 <div class="col-4 mb-2">
                                     <a href="yadbood/{{ yad.id }}">
-                                        <img src="{{ yad.master_image.url }}" alt="{{ yad.name }} {{ yad.family }}" class="imaged w-100">
+                                        <img src="{{ yad.master_image.url }}" alt="{{ yad.name }} {{ yad.family }}"
+                                             class="imaged w-100">
                                         <div class="in">
                                             <h5 class="subtext">{{ yad.title }} {{ yad.name }} {{ yad.family }}</h5>
                                         </div>
@@ -115,9 +116,9 @@
                             {% endfor %}
                         </div>
                     </div>
-{#                    <div class="pr-2 pl-2">#}
-{#                        <a href="#" class="btn btn-primary btn-block">تصاویر بیشتر</a>#}
-{#                    </div>#}
+                    {#                    <div class="pr-2 pl-2">#}
+                    {#                        <a href="#" class="btn btn-primary btn-block">تصاویر بیشتر</a>#}
+                    {#                    </div>#}
                 </div>
                 <!-- * feed -->
 
@@ -125,24 +126,24 @@
                 <div class="tab-pane fade" id="friends" role="tabpanel">
                     {% render_partial 'featured_render' %}
 
-{#                    <div class="pr-2 pl-2">#}
-{#                        <a href="#" class="btn btn-primary btn-block">تصاویر بیشتر</a>#}
-{#                    </div>#}
+                    {#                    <div class="pr-2 pl-2">#}
+                    {#                        <a href="#" class="btn btn-primary btn-block">تصاویر بیشتر</a>#}
+                    {#                    </div>#}
                 </div>
                 <!-- * friends -->
 
                 <!--  bookmarks -->
                 <div class="tab-pane fade" id="bookmarks" role="tabpanel">
-                {%  render_partial 'for_city_tab' %}
+                    {% render_partial 'for_city_tab' %}
 
                 </div>
                 <!-- * bookmarks -->
-            
+
             </div>
         </div>
         <!-- * tab content -->
 
-    <div class="fab-button animate bottom-right dropdown">
+        <div class="fab-button animate bottom-right dropdown">
 
             <a href="#" class="fab" data-toggle="dropdown" aria-expanded="false">
                 <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
@@ -150,12 +151,14 @@
             <div class="dropdown-menu" style="">
                 <a class="dropdown-item" href="/create">
 
-                    <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="musical notes outline"></ion-icon>
+                    <ion-icon name="document-text-outline" role="img" class="md hydrated"
+                              aria-label="musical notes outline"></ion-icon>
                     <p>یادبود جدید</p>
                 </a>
 
             </div>
         </div>
+    </div>
 
 
 
@@ -163,97 +166,97 @@
 
 
 
-        {#    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#}
+    {#    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#}
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <script>
-            $(".salavat-btn").click(function (e) {
-                    e.preventDefault()
-                    var id = $(this).attr("data-pk")
-                    var yad = "/yadbod/" + id
-                    var url = $(this).attr("href")
+    <script>
+        $(".salavat-btn").click(function (e) {
+                e.preventDefault()
+                var id = $(this).attr("data-pk")
+                var yad = "/yadbod/" + id
+                var url = $(this).attr("href")
 
-                    $.ajax({
-                            url: url,
-                            success: function (success) {
-                                {#console.log("success")#}
-                                $.ajax(
-                                    {
-                                        url: yad,
-                                        success: function (s) {
-                                            {#console.log("s")#}
-                                            $('#salavat-' + id).html(s.salavat_count)
-                                            console.log("salavat-" + id)
-                                            console.log(s.salavat_count)
-
-
-                                        },
-                                        error: function (e) {
-                                            console.log("e")
-                                        },
+                $.ajax({
+                        url: url,
+                        success: function (success) {
+                            {#console.log("success")#}
+                            $.ajax(
+                                {
+                                    url: yad,
+                                    success: function (s) {
+                                        {#console.log("s")#}
+                                        $('#salavat-' + id).html(s.salavat_count)
+                                        console.log("salavat-" + id)
+                                        console.log(s.salavat_count)
 
 
-                                    }
-                                )
+                                    },
+                                    error: function (e) {
+                                        console.log("e")
+                                    },
 
 
-                            },
-                            error: function (error) {
-                                console.log("error 1")
+                                }
+                            )
 
-                            }
+
+                        },
+                        error: function (error) {
+                            console.log("error 1")
 
                         }
-                    )
 
-                }
-            )
+                    }
+                )
+
+            }
+        )
 
 
-        </script>
+    </script>
 
 
-        <!-- jQuery Circle Progress -->
-        <script src="{% static 'js/plugins/jquery-circle-progress/circle-progress.min.js' %}"></script>
-        <script>
-            $('#circle1').circleProgress({
-                value: 0.75,
-                size: 500, // do not delete this
-                fill: {
-                    gradient: ["#1E74FD", "#592BCA"]
-                },
-                animation: {
-                    duration: 2000
-                }
-            });
-            $('#circle2').circleProgress({
-                value: 0.25,
-                size: 500, // do not delete this
-                fill: {
-                    gradient: ["#EC4433", "#FE9500"]
-                },
-                animation: {
-                    duration: 2000
-                }
-            });
-            $('#circle3').circleProgress({
-                value: {{quran_page_page100}},
-                {#value: .0016556291390728,#}
-                size: 500, // do not delete this
-                fill: {
-                    gradient: ["#00CDFF", "#1E74FD"]
-                },
-                animation: {
-                    duration: 2000
-                }
-            });
-        </script>
+    <!-- jQuery Circle Progress -->
+    <script src="{% static 'js/plugins/jquery-circle-progress/circle-progress.min.js' %}"></script>
+    <script>
+        $('#circle1').circleProgress({
+            value: 0.75,
+            size: 500, // do not delete this
+            fill: {
+                gradient: ["#1E74FD", "#592BCA"]
+            },
+            animation: {
+                duration: 2000
+            }
+        });
+        $('#circle2').circleProgress({
+            value: 0.25,
+            size: 500, // do not delete this
+            fill: {
+                gradient: ["#EC4433", "#FE9500"]
+            },
+            animation: {
+                duration: 2000
+            }
+        });
+        $('#circle3').circleProgress({
+            value: {{quran_page_page100}},
+            {#value: .0016556291390728,#}
+            size: 500, // do not delete this
+            fill: {
+                gradient: ["#00CDFF", "#1E74FD"]
+            },
+            animation: {
+                duration: 2000
+            }
+        });
+    </script>
 
-        </body>
+    </body>
 
- 
+
 
 
 
