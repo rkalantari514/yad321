@@ -24,7 +24,9 @@ import math
 
 def Help(request):
     context={}
+
     return render(request,'yadbod/help.html',context)
+
 
 
 
