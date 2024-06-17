@@ -22,6 +22,12 @@ from django.utils import timezone
 import math
 
 
+def Help(request):
+    context={}
+    return render(request,'yadbod/help.html',context)
+
+
+
 class YadbodList(ListView):
     # paginate_by = 9
 

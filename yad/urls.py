@@ -1,6 +1,7 @@
 from django.urls import path
 from yad.views import YadbodList, Yad_detail, add_salavat,add_100_salavat, Yad_detail_2, add_fatehe, reyad, CreateYad, load_cities2, \
-    EditYad, DeleteYad, yad_for_state, yad_for_city, SearchYadView, Yad_Total_Random,Yad_Total_Salavat,Yad_Total_Fatehe, Yad_Total_Quran
+    EditYad, DeleteYad, yad_for_state, yad_for_city, SearchYadView, Yad_Total_Random,Yad_Total_Salavat,Yad_Total_Fatehe, Yad_Total_Quran,Help
+
 
 # path('yadbod' ,YadbodList.as_view()),
 
@@ -9,6 +10,7 @@ from yad.views import YadbodList, Yad_detail, add_salavat,add_100_salavat, Yad_d
 
 urlpatterns = [
     path('' ,YadbodList.as_view(),name="yadbodl"),
+    path('help', Help, name="help"),
     path('yadbood/<yadId>', Yad_detail_2, name="yadboodd"),
     path('yadbood/state/<stateId>/<page>', yad_for_state, name="yad_for_state"),
     path('yadbood/city/<cityId>/<page>', yad_for_city, name="yad_for_city"),
