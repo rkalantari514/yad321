@@ -23,10 +23,18 @@ import math
 
 
 def Help(request):
-    from eitaa import Eitaa
-    token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
-    e = Eitaa(token)
-    e.send_message("yadeoir", "message text", pin=True)
+    # from eitaa import Eitaa
+    # token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
+    # e = Eitaa(token)
+    # # e.send_message("yadeoir", "message text", pin=True)
+    #
+    # yad=Yad.objects.all().first()
+    #
+    # cap=yad.name
+    # file=yad.master_image.url
+    #
+    # e.send_file("yadeoir", 'cap','http://127.0.0.1:8000/media/yadbod/None_jLGfhJ1.jpg')
+
     context={ }
     return render(request,'yadbod/help.html',context)
 
