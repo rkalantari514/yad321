@@ -23,8 +23,7 @@ import math
 
 
 def Help(request):
-    context={}
-
+    context={ }
     return render(request,'yadbod/help.html',context)
 
 

@@ -452,22 +452,21 @@
             <br>
             <div class="container">
                 <div class="row justify-content-around">
-                    <div class="text-center">
-                        <a href="/create" class="btn btn-icon btn-lg btn-primary">
-                            <ion-icon name="document-text-outline" role="img" class="md hydrated"
-                                      aria-label="musical notes outline"></ion-icon>
-                        </a>
-                        <p class="align-center">یادبود جدید</p>
-                    </div>
+{#                    <div class="text-center">#}
+{#                        <a href="/create" class="btn btn-icon btn-lg btn-primary">#}
+{#                            <ion-icon name="document-text-outline" role="img" class="md hydrated"#}
+{#                                      aria-label="musical notes outline"></ion-icon>#}
+{#                        </a>#}
+{#                        <p class="align-center">یادبود جدید</p>#}
+{#                    </div>#}
                     {% if event_permision %}
-                        <div class="text-center text-danger">
-
-                            <a class="btn btn-icon btn-lg btn-danger" data-toggle="modal"
-                               data-target="#DialogIconedButtonInline">
-                                <ion-icon name="trash-outline" role="img" class="md hydrated"
+<div class="text-center">
+                            <a href="/edit/{{ yad.id }}" class="btn btn-icon btn-lg btn-primary">
+                                <ion-icon name="create-outline" role="img" class="md hydrated"
                                           aria-label="musical notes outline"></ion-icon>
+
                             </a>
-                            <p>حذف یادبود</p>
+                            <p class="align-center">ویرایش یادبود</p>
                         </div>
                         <div class="text-center">
                             <a href="/newevent/{{ yad.id }}" class="btn btn-icon btn-lg btn-primary">
@@ -476,13 +475,15 @@
                             </a>
                             <p class="align-center">مراسم جدید</p>
                         </div>
-                        <div class="text-center">
-                            <a href="/edit/{{ yad.id }}" class="btn btn-icon btn-lg btn-primary">
-                                <ion-icon name="create-outline" role="img" class="md hydrated"
-                                          aria-label="musical notes outline"></ion-icon>
 
+                        <div class="text-center text-danger">
+
+                            <a class="btn btn-icon btn-lg btn-danger" data-toggle="modal"
+                               data-target="#DialogIconedButtonInline">
+                                <ion-icon name="trash-outline" role="img" class="md hydrated"
+                                          aria-label="musical notes outline"></ion-icon>
                             </a>
-                            <p class="align-center">ویرایش یادبود</p>
+                            <p>حذف یادبود</p>
                         </div>
                     {% endif %}
                 </div>
