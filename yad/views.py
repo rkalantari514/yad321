@@ -19,26 +19,47 @@ from yad.forms import CreateYadForm
 from yad.models import Yad
 from jalali_date import datetime2jalali, date2jalali
 from django.utils import timezone
+from yadeo import settings
 import math
+
+
+@login_required(login_url='/register')
+def Send_eitaa(request, *args, **kwargs):
+    user_id = request.user.id
+    user = MyUser.objects.get(id=user_id)
+    if user.mobile != '09151006447':
+        return redirect('/')
+    selected_yad_id = kwargs['yadId']
+    yadbood = Yad.objects.filter(id=selected_yad_id).first()
+
+
+    try:
+
+        from eitaa import Eitaa
+        token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
+        e = Eitaa(token)
+
+        cap=yadbood.title+" "+yadbood.name+" "+yadbood.family
+        file=yadbood.master_image.file.name
+        print('file')
+        print(file)
+
+        # filename = settings.MEDIA_ROOT + '/yadbod/None.jpg'
+        # print('filename')
+        # print(filename)
+        e.send_file("yadeoir", cap,file)
+        print('send')
+        return redirect('/')
+    except:
+        print('dont send')
+        return redirect('/')
+
 
 
 def Help(request):
 
-    # from eitaa import Eitaa
-    # token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
-    # e = Eitaa(token)
-    # # e.send_message("yadeoir", "message text", pin=True)
-    #
-    # yad=Yad.objects.all().first()
-    #
-    # cap=yad.name
-    # file=yad.master_image.url
-    #
-    # e.send_file("yadeoir", 'cap','http://127.0.0.1:8000/media/yadbod/None_jLGfhJ1.jpg')
-
-    context={ }
+    context={   }
     return render(request,'yadbod/help.html',context)
-
 
 
 
@@ -138,7 +159,7 @@ def Yad_detail_2(request, *args, **kwargs):
 
     if yadbood is None:
         raise Http404('یادبود مورد نظر یافت نشد')
-    yadbood.visit_count += 1
+    # yadbood.visit_count += 1
     yadbood.save()
     owner = yadbood.owner.profile_name
 
