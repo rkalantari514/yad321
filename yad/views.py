@@ -30,17 +30,17 @@ def Send_eitaa(request, *args, **kwargs):
     if user.mobile != '09151006447':
         return redirect('/')
     selected_yad_id = kwargs['yadId']
-    yadbood = Yad.objects.filter(id=selected_yad_id).first()
-
+    repo=[]
 
     try:
-
+        yadbood = Yad.objects.filter(id=selected_yad_id).first()
         from eitaa import Eitaa
-        token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
+        token = "1bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
         e = Eitaa(token)
-
         cap=yadbood.title+" "+yadbood.name+" "+yadbood.family
+        repo.append(cap)
         file=yadbood.master_image.file.name
+        repo.append(file)
         print('file')
         print(file)
 
@@ -48,12 +48,19 @@ def Send_eitaa(request, *args, **kwargs):
         # print('filename')
         # print(filename)
         e.send_file("yadeoir", cap,file)
-        print('send')
-        return redirect('/')
-    except:
-        print('dont send')
-        return redirect('/')
+        repo.append(e.send_file("yadeoir", cap,file))
+        repo.append('send')
 
+        print('send')
+
+    except:
+        repo.append('ارسال نشد')
+
+    context = {
+        'repo': repo
+    }
+
+    return render(request,'yadbod/sendreport.html',context)
 
 
 def Help(request):
