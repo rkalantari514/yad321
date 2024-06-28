@@ -102,7 +102,7 @@ def Send_eitaa(request, *args, **kwargs):
     user = MyUser.objects.get(id=user_id)
     if user.mobile != '09151006447':
         return redirect('/')
-    yads=Yad.objects.filter(active=True).all()
+    yads=Yad.objects.filter(id=1)
     repo = []
     for yadbood in yads:
         repo.append('++++++++++++++++++++++++++++++++++++++++++++++++++')
