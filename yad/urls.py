@@ -12,7 +12,7 @@ from yad.views import YadbodList, Yad_detail, add_salavat, add_100_salavat, Yad_
 urlpatterns = [
     path('' ,YadbodList.as_view(),name="yadbodl"),
     path('help', Help, name="help"),
-    path('sendeitaa/<yadId>', Send_eitaa, name="Sendeitaa"),
+    path('sendeitaa', Send_eitaa, name="Sendeitaa"),
     path('yadbood/<yadId>', Yad_detail_2, name="yadboodd"),
     path('yadbood/state/<stateId>/<page>', yad_for_state, name="yad_for_state"),
     path('yadbood/city/<cityId>/<page>', yad_for_city, name="yad_for_city"),
