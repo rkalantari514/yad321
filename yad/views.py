@@ -27,6 +27,10 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 
+
+
+
+
 def get_latest_messages(channel_id):
     r = requests.get(f"https://eitaa.com/{channel_id}")
     soup = BeautifulSoup(r.text, 'html.parser')
@@ -113,8 +117,10 @@ def Send_eitaa(request, *args, **kwargs):
             token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
             cap1 = yadbood.title + " " + yadbood.name + " " + yadbood.family
             capdate=str(date2jalali(yadbood.death_date))
-            print(yadbood.death_date)
-            print(capdate)
+            year=capdate[0:4]
+            month=capdate[5:7]
+            day=capdate[8:]
+            capdate=f'{year}/{month}/{day}'
             titledate='تاریخ فوت'
             if 'شهید' in yadbood.title:
                 titledate = 'تاریخ شهادت'
@@ -122,11 +128,11 @@ def Send_eitaa(request, *args, **kwargs):
             cap = f"""صفحه یادبود  {cap1}
 www.yadeo.ir/yadbood/{yadbood.id}
 {titledate}:{capdate}
-از سایر یاد بود های این صفحه نیز بازدید فرمائید:
+
+از سایر یادبودهای این صفحه نیز بازدید فرمائید:
 www.yadeo.ir/profile/{yadbood.owner.id}
-یاداو|سامانه یادبود مجازی
-@yadeoir
-                """
+
+یاداو|سامانه یادبود مجازی @yadeoir"""
 
             repo.append(cap)
             file = yadbood.master_image.file.name
@@ -155,7 +161,7 @@ www.yadeo.ir/profile/{yadbood.owner.id}
     return render(request,'yadbod/sendreport.html',context)
 
 def Reseteitaa(request):
-    yads = Yad.objects.filter(active=True)
+    yads = Yad.objects.all()
     for y in yads:
         y.visit_count=0
         y.save()
