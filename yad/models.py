@@ -45,7 +45,7 @@ class Yad(models.Model):
     master_image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='تصویر اصلی')
     # favio_image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='تصویر اشتراک گذاری')
     active = models.BooleanField(default=True, verbose_name='فعال / غیرفعال')
-    visit_count = models.IntegerField(default=0, verbose_name='لینک ایتا')
+    visit_count = models.IntegerField(default=0, verbose_name='تعداد بازدید')
     salavat_count = models.IntegerField(default=0, verbose_name='تعداد صلوات')
     fatehe_count = models.IntegerField(default=0, verbose_name='تعداد فاتحه')
     quran_count = models.IntegerField(default=0, verbose_name='تعداد صفحات قرآن')
