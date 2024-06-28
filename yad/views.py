@@ -96,7 +96,6 @@ def send_file2(token, chat_id, caption, file, pin=False, date=None, view_to_dele
 
 
 
-
 @login_required(login_url='/register')
 def Send_eitaa(request, *args, **kwargs):
     user_id = request.user.id
