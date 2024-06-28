@@ -140,7 +140,6 @@ www.yadeo.ir/profile/{yadbood.owner.id}
             file = yadbood.master_image.file.name
             repo.append(file)
 
-            # send_file2(token,"yadeoir", cap,file)
             repo.append(send_file2(token, "yadeoir", cap, file))
             repo.append('send')
             print('send')
