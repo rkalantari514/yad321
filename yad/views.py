@@ -24,51 +24,51 @@ from django.utils import timezone
 # for eitaa
 from os.path import isfile
 import requests
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from time import sleep
 
-# def get_latest_messages(channel_id):
-#     r = requests.get(f"https://eitaa.com/{channel_id}")
-#     soup = BeautifulSoup(r.text, 'html.parser')
-#     pure_messages = soup.find_all('div', attrs={'class': 'etme_widget_message_bubble'})
-#     messages = []
-#
-#     for message in pure_messages:
-#         message_text = message.find('div', class_='etme_widget_message_text').text.strip()
-#         views_element = message.find('span', class_='etme_widget_message_views')
-#
-#         views = views_element.text.strip() if views_element else "Views not available"
-#         image_link = message.find('a', attrs={'class': 'etme_widget_message_photo_wrap'})
-#
-#         image_url = ""
-#         if image_link:
-#             image_link = image_link['style']
-#
-#             import re
-#             url_match = re.search(r"url\('([^']+)'\)", image_link)
-#             if url_match:
-#                 image_url = url_match.group(1)
-#             else:
-#                 print("Image URL not found")
-#
-#         pure_time = message.find('span', class_='etme_widget_message_meta')
-#         iso_time = pure_time.a.time['datetime']
-#         message_number = pure_time.a['href'].split('/')[-1]
-#
-#         messages.append({
-#             'image_link': f"https://eitaa.com/{image_url}" if image_url else None,
-#             'text': message_text,
-#             'views': views,
-#             'iso_time': iso_time,
-#             'message_number': int(message_number),
-#         })
-#         print('-------------')
-#         print(int(message_number))
-#     print(len(messages))
-#     print('*************')
-#
-#
-#     return messages
+def get_latest_messages(channel_id):
+    r = requests.get(f"https://eitaa.com/{channel_id}")
+    soup = BeautifulSoup(r.text, 'html.parser')
+    pure_messages = soup.find_all('div', attrs={'class': 'etme_widget_message_bubble'})
+    messages = []
+
+    for message in pure_messages:
+        message_text = message.find('div', class_='etme_widget_message_text').text.strip()
+        views_element = message.find('span', class_='etme_widget_message_views')
+
+        views = views_element.text.strip() if views_element else "Views not available"
+        image_link = message.find('a', attrs={'class': 'etme_widget_message_photo_wrap'})
+
+        image_url = ""
+        if image_link:
+            image_link = image_link['style']
+
+            import re
+            url_match = re.search(r"url\('([^']+)'\)", image_link)
+            if url_match:
+                image_url = url_match.group(1)
+            else:
+                print("Image URL not found")
+
+        pure_time = message.find('span', class_='etme_widget_message_meta')
+        iso_time = pure_time.a.time['datetime']
+        message_number = pure_time.a['href'].split('/')[-1]
+
+        messages.append({
+            'image_link': f"https://eitaa.com/{image_url}" if image_url else None,
+            'text': message_text,
+            'views': views,
+            'iso_time': iso_time,
+            'message_number': int(message_number),
+        })
+        print('-------------')
+        print(int(message_number))
+    print(len(messages))
+    print('*************')
+
+
+    return messages
 
 def send_file2(token, chat_id, caption, file, pin=False, date=None, view_to_delete=-1,
               disable_notification=False, reply_to_message_id=None):
@@ -133,15 +133,15 @@ www.yadeo.ir/profile/{yadbood.owner.id}
             repo.append(send_file2(token, "yadeoir", cap, file))
             repo.append('send')
             print('send')
-            # sleep(15)
-            # messageses = get_latest_messages('yadeoir')
-            # total = len(messageses) - 1
-            # last = messageses[int(total)]
-            # n = last.get('message_number')
-            # print(n)
-            # repo.append(f'number: {n}')
-            # yadbood.visit_count = n
-            # yadbood.save()
+            sleep(15)
+            messageses = get_latest_messages('yadeoir')
+            total = len(messageses) - 1
+            last = messageses[int(total)]
+            n = last.get('message_number')
+            print(n)
+            repo.append(f'number: {n}')
+            yadbood.visit_count = n
+            yadbood.save()
         except:
             repo.append('ارسال نشد')
 
