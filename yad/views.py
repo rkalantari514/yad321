@@ -108,11 +108,13 @@ def Send_eitaa(request, *args, **kwargs):
         return redirect('/')
     yads=Yad.objects.filter(active=True)
     repo = []
+    no1=0
     for yadbood in yads:
         repo.append('++++++++++++++++++++++++++++++++++++++++++++++++++')
-        if yadbood.visit_count !=0 :
+        if yadbood.visit_count !=0 or no1 > 5:
             repo.append(f'yadbood.visit_count={yadbood.visit_count}')
             continue
+
         try:
             token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
             cap1 = yadbood.title + " " + yadbood.name + " " + yadbood.family
@@ -151,6 +153,7 @@ www.yadeo.ir/profile/{yadbood.owner.id}
             repo.append(f'number: {n}')
             yadbood.visit_count = n
             yadbood.save()
+            no1+=1
         except:
             repo.append('ارسال نشد')
 
