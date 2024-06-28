@@ -72,7 +72,7 @@ def Send_eitaa(request, *args, **kwargs):
 
     try:
         yadbood = Yad.objects.filter(id=selected_yad_id).first()
-        token = "1bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
+        token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
         cap=yadbood.title+" "+yadbood.name+" "+yadbood.family
         repo.append(cap)
         file=yadbood.master_image.file.name
