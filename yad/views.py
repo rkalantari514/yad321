@@ -47,7 +47,7 @@ def Send_eitaa(request, *args, **kwargs):
         # filename = settings.MEDIA_ROOT + '/yadbod/None.jpg'
         # print('filename')
         # print(filename)
-        e.send_file("yadeoir", cap,file)
+        # e.send_file("yadeoir", cap,file)
         repo.append(e.send_file("yadeoir", cap,file))
         repo.append('send')
 
