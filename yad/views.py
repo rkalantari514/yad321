@@ -39,10 +39,9 @@ def Send_eitaa(request, *args, **kwargs):
         e = Eitaa(token)
         cap=yadbood.title+" "+yadbood.name+" "+yadbood.family
         repo.append(cap)
-        file=yadbood.master_image.file.name
+        file=yadbood.master_image.file
         repo.append(file)
-        print('file')
-        print(file)
+
 
         # filename = settings.MEDIA_ROOT + '/yadbod/None.jpg'
         # print('filename')
