@@ -106,6 +106,9 @@ def Send_eitaa(request, *args, **kwargs):
     repo = []
     for yadbood in yads:
         repo.append('++++++++++++++++++++++++++++++++++++++++++++++++++')
+        if yadbood.visit_count !=0 :
+            repo.append(f'yadbood.visit_count={yadbood.visit_count}')
+            continue
         try:
             token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
             cap1 = yadbood.title + " " + yadbood.name + " " + yadbood.family
@@ -150,6 +153,12 @@ www.yadeo.ir/profile/{yadbood.owner.id}
     }
 
     return render(request,'yadbod/sendreport.html',context)
+
+def Reseteitaa(request):
+    yads = Yad.objects.filter(active=True)
+    for y in yads:
+        y.visit_count=0
+        y.save()
 
 
 def Help(request):
