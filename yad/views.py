@@ -110,12 +110,16 @@ def Send_eitaa(request, *args, **kwargs):
         try:
             token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
             cap1 = yadbood.title + " " + yadbood.name + " " + yadbood.family
+            capdate=str(date2jalali(yadbood.death_date))
+            print(yadbood.death_date)
+            print(capdate)
             cap = f"""صفحه یادبود مجازی {cap1}
         www.yadeo.ir/yadbood/{yadbood.id}
-        تاریخ فوت:{yadbood.death_date}
+        تاریخ فوت:{capdate}
         از سایر یاد بود های این صفحه نیز بازدید فرمائید:
         www.yadeo.ir/profile/{yadbood.owner.id}
         یاداو|سامانه یادبود مجازی
+        @yadeoir
                 """
 
             repo.append(cap)
