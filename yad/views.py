@@ -48,7 +48,7 @@ def Send_eitaa(request, *args, **kwargs):
         # print('filename')
         # print(filename)
         # e.send_file("yadeoir", cap,file)
-        repo.append(e.send_file("yadeoir", cap,file))
+        # repo.append(e.send_file("yadeoir", cap,file))
         repo.append('send')
 
         print('send')
