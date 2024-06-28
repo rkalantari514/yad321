@@ -159,7 +159,7 @@ def Reseteitaa(request):
     for y in yads:
         y.visit_count=0
         y.save()
-
+    return redirect('/')
 
 def Help(request):
 
