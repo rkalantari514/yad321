@@ -162,7 +162,13 @@ www.yadeo.ir/profile/{yadbood.owner.id}
 
     return render(request,'yadbod/sendreport.html',context)
 
+
+@login_required(login_url='/register')
 def Reseteitaa(request):
+    user_id = request.user.id
+    user = MyUser.objects.get(id=user_id)
+    if user.mobile != '09151006447':
+        return redirect('/')
     yads = Yad.objects.all()
     for y in yads:
         y.visit_count=0
@@ -171,10 +177,17 @@ def Reseteitaa(request):
 
 
 
+@login_required(login_url='/register')
 def Delete2(request):
+    user_id = request.user.id
+    user = MyUser.objects.get(id=user_id)
+    if user.mobile != '09151006447':
+        return redirect('/')
     yads = Yad.objects.all()
     for y in yads:
         vc=y.visit_count
+        if vc ==0:
+            continue
         if Yad.objects.filter(visit_count=vc).all().count() > 1:
             for yy in Yad.objects.filter(visit_count=vc).all():
                 yy.visit_count = 0
