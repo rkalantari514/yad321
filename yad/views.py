@@ -169,6 +169,25 @@ def Reseteitaa(request):
         y.save()
     return redirect('/')
 
+
+
+def Delete2(request):
+    yads = Yad.objects.all()
+    for y in yads:
+        vc=y.visit_count
+        if Yad.objects.filter(visit_count=vc).all().count() > 1:
+            for yy in Yad.objects.filter(visit_count=vc).all():
+                yy.visit_count = 0
+                yy.save()
+
+
+    return redirect('/')
+
+
+
+
+
+
 def Help(request):
 
     context={   }
