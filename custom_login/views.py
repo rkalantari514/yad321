@@ -30,7 +30,7 @@ def register_view(request):
             MyUser.objects.create_user(mobile=yourmobile, password=None)
             user1 = MyUser.objects.filter(mobile=yourmobile).first()
             user1.profile_name=f"کاربر {user1.id}"
-            print(f"new user{user1}")
+            # print(f"new user{user1}")
         else:
             now = datetime.now()
             otp_time = user1.otp_create_time
