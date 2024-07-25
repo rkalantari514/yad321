@@ -11,14 +11,11 @@
                 <h4>اعنبار کد ارسالی به شماره شما:</h4>
                 <h4 id="demo"></h4>
 
-{#                <div id="demo4" class="invisible">#}
+                {#                <div id="demo4" class="invisible">#}
                 <div>
 
 
-
- </div>
-
-
+                </div>
 
 
             </div>
@@ -39,37 +36,27 @@
                     </div>
 
 
+                    {#                    <div class="form-button-group">#}
+                    {#                        <button type="submit" class="btn btn-primary btn-block btn-lg">تایید</button>#}
+                    {#                    </div>#}
+                    <a id="demo4" href="">
+                        <button id="demo5" class="btn btn-primary">
+                            {#       <button  class="btn btn-primary ">#}
+                            <h4 id="demo2"></h4>
+                        </button>
+                    </a>
+                    <br>
+                    <br>
+                    <br>
 
-
-{#                    <div class="form-button-group">#}
-{#                        <button type="submit" class="btn btn-primary btn-block btn-lg">تایید</button>#}
-{#                    </div>#}
-<a id="demo4" href="">
-       <button id="demo5" class="btn btn-primary">
-{#       <button  class="btn btn-primary ">#}
-           <h4 id="demo2"></h4>
-       </button>
-</a>
-                <br>
-                <br>
-                <br>
-
-<div >
+                    <div>
                         <button type="submit" class="btn btn-primary btn-block btn-lg">تایید</button>
                     </div>
 
 
-
-
-
-
-
                 </form>
 
-{#            <a id="demo4" href="/verify/resend_otp/{{ yormobile }}">#}
-
-
-
+                {#            <a id="demo4" href="/verify/resend_otp/{{ yormobile }}">#}
 
 
             </div>
@@ -101,7 +88,6 @@
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 
-
             // Display the result in the element with id="demo"
             {#document.getElementById("demo").innerHTML = days + "d " + hours + "h "#}
             {#+ minutes + "m " + seconds + "s ";#}
@@ -121,10 +107,9 @@
         }, 1000);
 
 
-
         {#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#}
 
-                // Update the count down every 1 second
+        // Update the count down every 1 second
         var y = setInterval(function () {
 
             // Get today's date and time
@@ -134,29 +119,24 @@
             var distance2 = countDownDate2 - now;
 
             // Time calculations for days, hours, minutes and seconds
-           var minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
-           var seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+            var minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
 
             // Display the result in the element with id="demo"
 
-            document.getElementById("demo2").innerHTML = "  ارسال مجدد " +"("+ seconds2 + " : " + minutes2 +")" ;
+            document.getElementById("demo2").innerHTML = "  ارسال مجدد " + "(" + seconds2 + " : " + minutes2 + ")";
             document.getElementById("demo4").removeAttribute('href')
-            document.getElementById("demo5").className= "btn btn-secondary disabled";
+            document.getElementById("demo5").className = "btn btn-secondary disabled";
             // If the count down is finished, write some text
             if (distance2 < 0) {
                 clearInterval(y);
                 document.getElementById("demo2").innerHTML = " ارسال مجدد";
-                document.getElementById("demo5").className= "btn btn-primary";
-                document.getElementById("demo4").setAttribute("href","/verify/resend_otp/{{ yormobile }}")
+                document.getElementById("demo5").className = "btn btn-primary";
+                document.getElementById("demo4").setAttribute("href", "/verify/resend_otp/{{ yormobile }}")
                 ('href', obj.attributes['href_bak'].nodeValue);
             }
 
         }, 1000);
-
-
-
-
-
 
 
     </script>
