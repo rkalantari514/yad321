@@ -164,6 +164,58 @@ www.yadeo.ir/profile/{yadbood.owner.id}
 
 
 @login_required(login_url='/register')
+def Create_eitaa(request, *args, **kwargs):
+    user_id = request.user.id
+    user = MyUser.objects.get(id=user_id)
+    selected_yad_id = kwargs['yadId']
+    yadbood = Yad.objects.filter(id=selected_yad_id).first()
+
+    if yadbood.visit_count !=0 :
+        return redirect(f'/yadbood/{selected_yad_id}')
+
+    try:
+        token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
+        cap1 = yadbood.title + " " + yadbood.name + " " + yadbood.family
+        capdate=str(date2jalali(yadbood.death_date))
+        year=capdate[0:4]
+        month=capdate[5:7]
+        day=capdate[8:]
+        capdate=f'{year}/{month}/{day}'
+        titledate='تاریخ فوت'
+        if 'شهید' in yadbood.title:
+            titledate = 'تاریخ شهادت'
+
+        cap = f"""صفحه یادبود  {cap1}
+www.yadeo.ir/yadbood/{yadbood.id}
+{titledate}:{capdate}
+
+از سایر یادبودهای این صفحه نیز بازدید فرمائید:
+www.yadeo.ir/profile/{yadbood.owner.id}
+
+یاداو|سامانه یادبود مجازی @yadeoir"""
+
+        file = yadbood.master_image.file.name
+        test=send_file2(token, "yadeoir", cap, file)
+        print('1')
+        sleep(15)
+        print('15')
+
+        messageses = get_latest_messages('yadeoir')
+        total = len(messageses) - 1
+        last = messageses[int(total)]
+        n = last.get('message_number')
+        print(n)
+        yadbood.visit_count = n
+        yadbood.save()
+    except:
+        pass
+
+    return (redirect(f'/yadbood/{selected_yad_id}'))
+
+
+
+
+@login_required(login_url='/register')
 def Reseteitaa(request):
     user_id = request.user.id
     user = MyUser.objects.get(id=user_id)

@@ -460,8 +460,17 @@
                             </a>
                             <p class="align-center">اشتراک گذاری در ایتا</p>
                         </div>
+{% else %}
+                        <div class="text-center">
+                            <a href="/createitaa/{{ yad.id }}">
+                                 <img src="{% static 'img/icon/eitaalink.jpg' %}" alt="ایجاد لینک در کانال ایتا" class="imaged w-25">
+
+                            </a>
+                            <p class="align-center">ایجاد لینک در کانال ایتا</p>
+                        </div>
 
                     {% endif %}
+
                 </div>
             </div>
 

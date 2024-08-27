@@ -2,7 +2,7 @@ from django.urls import path
 from yad.views import YadbodList, Yad_detail, add_salavat, add_100_salavat, Yad_detail_2, add_fatehe, reyad, CreateYad, \
     load_cities2, \
     EditYad, DeleteYad, yad_for_state, yad_for_city, SearchYadView, Yad_Total_Random, Yad_Total_Salavat, \
-    Yad_Total_Fatehe, Yad_Total_Quran, Help,Send_eitaa,Reseteitaa,Delete2
+    Yad_Total_Fatehe, Yad_Total_Quran, Help, Send_eitaa, Reseteitaa, Delete2, Create_eitaa
 
 # path('yadbod' ,YadbodList.as_view()),
 
@@ -13,6 +13,7 @@ urlpatterns = [
     path('' ,YadbodList.as_view(),name="yadbodl"),
     path('help', Help, name="help"),
     path('sendeitaa', Send_eitaa, name="Sendeitaa"),
+    path('createitaa/<yadId>', Create_eitaa, name="createitaa"),
     path('reseteitaa', Reseteitaa, name="reseteitaa"),
     path('delete2', Delete2, name="delete2"),
     path('yadbood/<yadId>', Yad_detail_2, name="yadboodd"),
