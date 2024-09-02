@@ -959,9 +959,11 @@ def Salsms(request):
     user = MyUser.objects.get(id=user_id)
     if user.mobile != '09151006447':
         return redirect('/')
+    token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
+    send_message_eitaa(token, 'yadeoadmin', 'تلاش برای ارسال sms')
+
     yads = Yad.objects.all()
     now1 = datetime.datetime.now()
-    token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
 
     for yad in yads:
         sal=yad.salg()
