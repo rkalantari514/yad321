@@ -942,7 +942,7 @@ def send_sms(mobile, tok1,tok2):
             'receptor': mobile,  # multiple mobile number, split by comma
             'template': 'salgard',
             'token': tok1,
-            'token2': tok2,
+            # 'token2': tok2,
             'type': 'sms',  # sms vs call
      }
         response = api.verify_lookup(params)
@@ -953,7 +953,7 @@ def send_sms(mobile, tok1,tok2):
         print('not')
 
 
-@login_required(login_url='/register')
+# @login_required(login_url='/register')
 def Salsms(request):
     user_id = request.user.id
     user = MyUser.objects.get(id=user_id)
@@ -966,13 +966,13 @@ def Salsms(request):
     for yad in yads:
         sal=yad.salg()
         tosall=(sal-now1).days
-        if tosall<60:
+        if tosall == 2:
             smsto=yad.owner.mobile
-            if smsto!= "09151006447":
-                continue
+            # if smsto!= "09151006447":
+            #     continue
             tok1=yad.id
             tok2=(f' {yad.title} {yad.name} {yad.family}')
-            send_sms(smsto,tok1, tok1)
+            send_sms(smsto,tok1)
 
 
 
