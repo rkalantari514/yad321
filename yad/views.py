@@ -972,7 +972,7 @@ def Salsms(request):
                 continue
             tok1=yad.id
             tok2=(f' {yad.title} {yad.name} {yad.family}')
-            send_sms(smsto,tok1, tok2)
+            send_sms(smsto,tok1, tok1)
 
 
 
