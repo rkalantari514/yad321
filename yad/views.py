@@ -1,4 +1,5 @@
 #init 11
+from kavenegar import *
 from datetime import datetime
 import datetime
 
@@ -27,6 +28,7 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 
+from yadeo.settings import Kavenegar_API
 
 
 
@@ -96,8 +98,21 @@ def send_file2(token, chat_id, caption, file, pin=False, date=None, view_to_dele
     )
     return r.json()
 
-
-
+def send_message_eitaa(token, chat_id, text, pin=False, date=None, view_to_delete=-1,
+                 disable_notification=False, reply_to_message_id=None):
+    r = requests.post(
+        f"https://eitaayar.ir/api/{token}/sendMessage",
+        data={
+            'chat_id': chat_id,
+            'text': text,
+            'pin': int(pin),
+            'date': date,
+            'viewCountForDelete': view_to_delete,
+            'disable_notification': int(disable_notification),
+            'reply_to_message_id': reply_to_message_id if reply_to_message_id != None else '',
+        }
+    )
+    return r.json()
 
 
 @login_required(login_url='/register')
@@ -916,3 +931,66 @@ def Yad_Total_Quran(request,*args,**kwargs):
     }
     return render(request,'yadbod/total_quran.html',context)    
     
+
+def send_sms(mobile, tok1,tok2):
+    mobile = [mobile, ]
+
+    try:
+        api = KavenegarAPI(Kavenegar_API)
+        print(api)
+        params = {
+            'receptor': mobile,  # multiple mobile number, split by comma
+            'template': 'salgard',
+            'token': tok1,
+            'token2': tok2,
+            'type': 'sms',  # sms vs call
+     }
+        response = api.verify_lookup(params)
+        print('yes')
+        print(response)
+
+    except:
+        print('not')
+
+
+@login_required(login_url='/register')
+def Salsms(request):
+    user_id = request.user.id
+    user = MyUser.objects.get(id=user_id)
+    if user.mobile != '09151006447':
+        return redirect('/')
+    yads = Yad.objects.all()
+    now1 = datetime.datetime.now()
+    token = "bot19575:9926ae4d-395b-4aea-a412-467fbae01c65"
+
+    for yad in yads:
+        sal=yad.salg()
+        tosall=(sal-now1).days
+        if tosall<60:
+            smsto=yad.owner.mobile
+            if smsto!= "09151006447":
+                continue
+            tok1=yad.id
+            tok2=(f' {yad.title} {yad.name} {yad.family}')
+            send_sms(smsto,tok1, tok2)
+
+
+
+
+
+            cap = f"""ارسال پیام سالگرد
+            ارسال به : {smsto}
+            شماره: {tok1}
+            {tok2}
+            تعداد روز باقیمانده تا سالگرد:
+            {tosall}
+             
+             """
+
+
+            send_message_eitaa(token,'yadeoadmin',cap)
+
+            sleep(5)
+
+
+    return redirect('/')
