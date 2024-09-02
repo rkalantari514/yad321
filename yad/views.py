@@ -968,15 +968,13 @@ def Salsms(request):
         tosall=(sal-now1).days
         if tosall == 2:
             smsto=yad.owner.mobile
+            if smsto in ['09111111111','09999999999','09151000000']:
+                continue
             # if smsto!= "09151006447":
             #     continue
             tok1=yad.id
             tok2=(f' {yad.title} {yad.name} {yad.family}')
             send_sms(smsto,tok1)
-
-
-
-
 
             cap = f"""ارسال پیام سالگرد
             ارسال به : {smsto}
@@ -984,7 +982,7 @@ def Salsms(request):
             {tok2}
             تعداد روز باقیمانده تا سالگرد:
             {tosall}
-             
+             www.yadeo.ir/yadbood/{tok1}
              """
 
 
