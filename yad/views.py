@@ -932,7 +932,7 @@ def Yad_Total_Quran(request,*args,**kwargs):
     return render(request,'yadbod/total_quran.html',context)    
     
 
-def send_sms(mobile, tok1,tok2):
+def send_sms(mobile, tok1):
     mobile = [mobile, ]
 
     try:
