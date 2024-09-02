@@ -446,17 +446,24 @@ def Yad_detail_2(request, *args, **kwargs):
         sadjdeh="alert alert-info mb-1 ju"
         text1="این صفحه سجده واجب دارد!"
         sad=True
-    y1=yadbood.death_date.year
-    m1=yadbood.death_date.month
-    d1=yadbood.death_date.day
 
+
+
+
+    # m1=yadbood.death_date.month
+    # d1=yadbood.death_date.day
+    #
     now1=datetime.datetime.now()
-    y2=datetime.datetime.now().year
-    salgard=datetime.datetime(y2, m1, d1)
-    if salgard < now1:
-        salgard = datetime.datetime(y2+1, m1, d1)
-    # s100=yadbood.salavat_count/100
-    # sal100=math.trunc(s100)
+    # y2=datetime.datetime.now().year
+    # salgard=datetime.datetime(y2, m1, d1)
+    # if salgard < now1:
+    #     salgard = datetime.datetime(y2+1, m1, d1)
+
+
+    salgard=yadbood.salg()
+
+
+
     context = {
         'title': title,
         'yad': yadbood,

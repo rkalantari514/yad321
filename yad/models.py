@@ -10,7 +10,8 @@ from django.db.models import Q
 from custom_login.models import MyUser
 from mycity.models import State, City
 
-
+from datetime import datetime
+import datetime
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(base_name)
@@ -184,5 +185,13 @@ class Yad(models.Model):
         elif width and height == 300:
             img.save(self.master_image.path)
 
+    def salg(self):
+        m1 = self.death_date.month
+        d1 = self.death_date.day
+        now1 = datetime.datetime.now()
+        y2 = datetime.datetime.now().year
+        salgard = datetime.datetime(y2, m1, d1)
+        if salgard < now1:
+            salgard = datetime.datetime(y2 + 1, m1, d1)
 
-
+        return salgard
