@@ -100,18 +100,21 @@ def send_file2(token, chat_id, caption, file, pin=False, date=None, view_to_dele
 
 def send_message_eitaa(token, chat_id, text, pin=False, date=None, view_to_delete=-1,
                  disable_notification=False, reply_to_message_id=None):
-    r = requests.post(
-        f"https://eitaayar.ir/api/{token}/sendMessage",
-        data={
-            'chat_id': chat_id,
-            'text': text,
-            'pin': int(pin),
-            'date': date,
-            'viewCountForDelete': view_to_delete,
-            'disable_notification': int(disable_notification),
-            'reply_to_message_id': reply_to_message_id if reply_to_message_id != None else '',
-        }
-    )
+    try:
+        r = requests.post(
+            f"https://eitaayar.ir/api/{token}/sendMessage",
+            data={
+                'chat_id': chat_id,
+                'text': text,
+                'pin': int(pin),
+                'date': date,
+                'viewCountForDelete': view_to_delete,
+                'disable_notification': int(disable_notification),
+                'reply_to_message_id': reply_to_message_id if reply_to_message_id != None else '',
+            }
+        )
+    except:
+        pass
     return r.json()
 
 
@@ -835,7 +838,7 @@ def load_cities2(request):
     return render(request, 'yadbod/city_dropdown_list_options.html', {'cities': cities})
     
 def Yad_Total_Random(request,*args,**kwargs):
-    yadbood = Yad.objects.order_by('id').all()
+    yadbood = Yad.objects.order_by('-id').all()
 
     paginator = Paginator(yadbood, 12)
     page_number = kwargs['page']
@@ -854,7 +857,7 @@ def Yad_Total_Random(request,*args,**kwargs):
             test = yad.death_date
             jalali = datetime2jalali(test).strftime('%Y/%m/%d')
             dates.append(jalali)
-   
+    now1 = datetime.datetime.now()
 
     context={
         'yadbood':yadbood,
@@ -863,6 +866,7 @@ def Yad_Total_Random(request,*args,**kwargs):
         'stpage':stpage,
         'finpage':finpage,
         'dates':dates,
+        'now1': now1,
     }
 
     return render(request,'yadbod/total_random.html',context)    
@@ -968,7 +972,7 @@ def Salsms(request):
     for yad in yads:
         sal=yad.salg()
         tosall=(sal-now1).days
-        if tosall == 2:
+        if tosall < 300:
             smsto=yad.owner.mobile
             if smsto in ['09111111111','09999999999','09151000000']:
                 continue

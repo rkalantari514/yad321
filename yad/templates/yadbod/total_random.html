@@ -24,11 +24,15 @@
                         <div class="in">
                             <div>
                                 {{ yad.title }} {{ yad.name }} {{ yad.family }}
+
+                                <div class="text-muted">
+                                    {{ yad.salg | timeuntil:now1 }} مانده تا سالگرد
                                 <div class="text-muted">
                                     {{ yad.salavat_count }} صلوات - {{ yad.fatehe_count }} فاتحه - {{ yad.quran_count }} صفحه قرآن
 
 
 
+                                </div>
                                 </div>
                             </div>
 
