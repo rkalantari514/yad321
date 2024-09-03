@@ -972,7 +972,7 @@ def Salsms(request):
     for yad in yads:
         sal=yad.salg()
         tosall=(sal-now1).days
-        if tosall < 300:
+        if tosall == 2:
             smsto=yad.owner.mobile
             if smsto in ['09111111111','09999999999','09151000000']:
                 continue
