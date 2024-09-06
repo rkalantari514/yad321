@@ -17,8 +17,8 @@ def profilepage (request, *args, **kwargs):
     print(profilename)
     profilepic=profile_user.profile_pic
     print('---------------------------------')
-    yadbood1=Yad.objects.filter(owner=profile_user)
-    yadbood2=Yad.objects.filter(reyad=profile_user)
+    yadbood1=Yad.objects.filter(owner=profile_user).order_by('death_date')
+    yadbood2=Yad.objects.filter(reyad=profile_user).order_by('death_date')
 
 
     profilesalavat=0
