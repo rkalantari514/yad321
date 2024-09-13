@@ -41,6 +41,7 @@ urlpatterns = [
     path('', include('marasem.urls')),
     path('', include('mycity.urls')),
     path('', include('contact.urls')),
+    path('', include('article.urls')),
 
     path('header', header, name="header"),
     path('footer', Search, name="Search"),

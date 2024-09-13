@@ -1,0 +1,59 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% load jalali_tags %}
+{% load static %}
+
+{% block content %}
+<div id="appCapsule">
+
+        <div class="blog-post">
+            <div class="mb-2">
+                <img src="{{ arti.article_imge.url }}" alt="" class="imaged square w-100">
+            </div>
+            <h1 class="title">{{ arti.title }}</h1>
+
+            <div class="post-header">
+                <div>
+                    <a href="#">
+                        <img src="{{ arti.article_imge.url }}" alt="avatar" class="imaged w24 rounded ml-05">
+                        {{ arti.article_kind }}
+                    </a>
+                </div>
+{#                آذر 11, 1399#}
+            </div>
+            <div class="post-body">
+                <p style="white-space: pre-wrap; text-align: justify; margin-right: 0.9rem;">
+                    {{ arti.article_text }}
+                </p>
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
