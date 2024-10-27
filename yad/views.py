@@ -957,7 +957,7 @@ def send_sms(mobile, tok1):
         print('not')
 
 
-@login_required(login_url='/register')
+# @login_required(login_url='/register')
 def Salsms(request):
     user_id = request.user.id
     user = MyUser.objects.get(id=user_id)
