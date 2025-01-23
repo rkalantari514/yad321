@@ -602,13 +602,12 @@ def CreateYad(request):
         city = create_form.cleaned_data.get('city')
         image = create_form.cleaned_data.get('image')
 
-        site_setting = Site_setting.objects.first()
 
         quran_set=Quran_set.objects.first()
         quran_set.total_yadbood +=1
         quran_set.save()
 
-
+        site_setting = Site_setting.objects.first()
         if image is None:
             image = site_setting.yad_image_default
 
@@ -999,5 +998,19 @@ def Salsms(request):
 
             sleep(5)
 
+
+    return redirect('/')
+
+
+def fix_broken_images(request):
+    # تمامی نمونه‌های مدل Yad را فراخوانی کنید
+    yad_objects = Yad.objects.all()
+
+    for yad in yad_objects:
+        # چک کردن اینکه آیا تصویر وجود دارد و حجم آن بزرگتر از صفر است
+        if yad.master_image is None or (hasattr(yad.master_image, 'size') and yad.master_image.size == 0):
+            # اگر تصویر خراب بود، از تصویر پیش‌فرض استفاده کنید
+            yad.master_image = site_setting.yad_image_default  # استفاده از تصویر پیش‌فرض
+            yad.save()  # ذخیره‌سازی تغییرات
 
     return redirect('/')
