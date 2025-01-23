@@ -1005,6 +1005,7 @@ def Salsms(request):
 def fix_broken_images(request):
     # تمامی نمونه‌های مدل Yad را فراخوانی کنید
     yad_objects = Yad.objects.all()
+    site_setting = Site_setting.objects.first()
 
     for yad in yad_objects:
         # چک کردن اینکه آیا تصویر وجود دارد و حجم آن بزرگتر از صفر است
