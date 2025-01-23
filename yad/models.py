@@ -12,6 +12,10 @@ from mycity.models import State, City
 
 from datetime import datetime
 import datetime
+
+from quran.models import Site_setting
+
+
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(base_name)
@@ -195,3 +199,11 @@ class Yad(models.Model):
             salgard = datetime.datetime(y2 + 1, m1, d1)
 
         return salgard
+
+    def get_master_image(self):
+        site_setting = Site_setting.objects.first()
+
+        if self.master_image and self.master_image.size > 0:
+            return self.master_image.url
+        else:
+            return site_setting.yad_image_default.url  # یا به آدرس پیش‌فرض به صورت مناسب اشاره کنید
